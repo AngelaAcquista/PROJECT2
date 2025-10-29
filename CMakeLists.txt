@@ -10,7 +10,10 @@ project(PROJECT2)
 set(SFML_DIR "Your path to SFML library here")
 find_package(SFML 2.5.1 COMPONENTS system window graphics audio REQUIRED)
 
-add_executable(PROJECT2 main.cpp)
+add_executable(PROJECT2 main.cpp
+        Hashtable.h
+        Restaurant.h
+)
 set_target_properties(PROJECT2 PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}")
 target_link_libraries(PROJECT2
     PRIVATE

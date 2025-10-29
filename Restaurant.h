@@ -1,0 +1,40 @@
+#pragma once
+#include <string>
+using namespace std;
+
+
+class Restaurant {
+    private:
+        string title;
+        string phone;
+        float rating;
+        string address;
+
+
+    public:
+        Restaurant(const string& title, const string& phone, float rating, const string& address) {
+            this->title = title;
+            this->phone = phone;
+            this->rating = rating;
+            this->address = address;
+        }
+
+
+        string getTitle() {
+            return title;
+        }
+
+        string getPhone() {
+            return phone;
+        }
+
+        float& getRating() {
+            return rating;
+        }
+
+        string getAddress() {
+            return address;
+        }
+
+
+};

@@ -1,9 +1,10 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include <queue>
+//#include <queue>
 #include <string>
-#include <unordered_map>
+#include "Hashtable.h"
+#include "Restaurant.h"
 #include <vector>
 
 using namespace std;
@@ -14,19 +15,6 @@ int main(){
   if (!file1.is_open()) {
      cout << "Unable to open file" << endl;
   }
-
- for (int i = 0; i < 1; i++) {
-     string line;
-     getline(file1, line);
-     istringstream stream(line);
-
-     string token;
-     while (getline(stream, token, ',')) {
-         cout << "Column: " << token << endl;
-     }
-
-
- }
 
 
   return 0;
