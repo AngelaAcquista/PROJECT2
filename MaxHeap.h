@@ -8,7 +8,7 @@ using namespace std;
 
 class MaxHeap{
 
-  vector<int> heap;
+  vector<float> heap;
   
   void heapifydown(){
     
@@ -21,16 +21,16 @@ class MaxHeap{
     void insert(){
       
     }
-    int extractmax(){
+    float extractmax(){
       
     }
-    int peekmax(){
+    float peekmax(){
       
     }
     bool isempty(){
       
     }
-    int size(){
+    float size(){
       
     }
     void printheap(){
