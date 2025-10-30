@@ -6,6 +6,34 @@
 
 using namespace std;
 
-MaxHeap{
+class MaxHeap{
+
+  vector<int> heap;
   
-}
+  void heapifydown(){
+    
+  }
+  void heapifyup(){
+    
+  } 
+  public:
+
+    void insert(){
+      
+    }
+    int extractmax(){
+      
+    }
+    int peekmax(){
+      
+    }
+    bool isempty(){
+      
+    }
+    int size(){
+      
+    }
+    void printheap(){
+      
+    }
+};
