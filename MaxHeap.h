@@ -2,20 +2,14 @@
 #include "Restaurant.h"
 #include <vector>
 #include <iostream>
-#include <algorithm>
+#include <queue>
 
 using namespace std;
 
 class MaxHeap{
 
-  vector<float> heap;
-  
-  void heapifydown(){
-    
-  }
-  void heapifyup(){
-    
-  } 
+  priority_queue<float> heap;
+
   public:
 
     void insert(){
@@ -27,13 +21,7 @@ class MaxHeap{
     float peekmax(){
       
     }
-    bool isempty(){
-      
-    }
-    float size(){
-      
-    }
-    void printheap(){
-      
+    bool isempty() const{
+      return heap.empty();
     }
 };
