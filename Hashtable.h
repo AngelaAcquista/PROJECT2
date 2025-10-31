@@ -19,11 +19,9 @@ class Hashtable {
         }
 
         int hash(const string& key) {
+            return 0;
 
         }
-
-
-
 
 
 
