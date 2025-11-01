@@ -13,16 +13,21 @@ class Hashtable {
         //each bucket will hash to key-value pairs
         vector<list<pair<string, vector<Restaurant>>>> table;
         int numEntries;
+        int numBuckets;
         float loadFactor;
         float maxLoadFactor = 0.75;
 
         void rehash() {
+            vector<list<pair<string, vector<Restaurant>>>> oldTable = table;
             //add more slots to the hashtable
-            table.resize(table.size() * 2);
+            vector<list<pair<string, vector<Restaurant>>>> updatedTable;
+            updatedTable.resize(numBuckets * 2);
 
+            //hash all existing keys in the old hashtable
 
-
-            //recalculate the load factor
+            table = updatedTable;
+            //recalculate table size and load factor
+            updateTableSize(numBuckets * 2);
             updateLoadFactor();
 
 
@@ -38,20 +43,32 @@ class Hashtable {
             return hashValue % table.size();
         }
 
-    public:
-        void updateLoadFactor() {
-            this->loadFactor = numEntries / table.size();
-        }
 
-        float getLoadFactor() {
-            return this->loadFactor;
-        }
+    public:
         Hashtable() {
             //initialize the hashtable with default values
             table.resize(80009);
             this->numEntries = 0;
+            this->numBuckets = table.size();
             this->loadFactor =  numEntries/(table.size());
         }
+
+        void updateLoadFactor() {
+                this->loadFactor = numEntries / table.size();
+        }
+
+        float getLoadFactor() {
+                return this->loadFactor;
+        }
+
+        void updateTableSize(int numSlots) {
+                this->numBuckets = numSlots;
+        }
+
+        int getNumBuckets() {
+                return numBuckets;
+        }
+
 
         void insert(const string& key, Restaurant& obj) {
                 int hashIndex = hash(key);
@@ -81,7 +98,6 @@ class Hashtable {
 
 
         }
-
 
         void makeEmpty() {
             //deletes all entries in the hashtable
