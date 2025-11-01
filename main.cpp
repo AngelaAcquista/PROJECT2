@@ -31,6 +31,7 @@ int main(){
       //testing the first 10 rows from the dataset for now
       //for each iteration, extract the necessary data for each restaurant
       for (int row = 0; row < 2; row++){
+          
           string line;
           getline(file, line);
           istringstream stream(line);
