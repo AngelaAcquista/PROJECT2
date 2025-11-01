@@ -31,7 +31,7 @@ class Restaurant {
             return phone;
         }
 
-        float& getRating() {
+        float getRating() {
             return rating;
         }
 
