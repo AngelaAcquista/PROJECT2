@@ -36,5 +36,8 @@ class Restaurant {
             return address;
         }
 
-
+        bool operator<(const Restaurant& other)const{
+            
+            return rating_ < other.rating_; 
+        }
 };
