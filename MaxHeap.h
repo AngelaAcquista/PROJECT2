@@ -22,6 +22,9 @@ class MaxHeap{
 
     Restaurant highestratedrestaurant(){
       
+      if(heap.empty()){
+        return Restaurant();
+      }
       return heap.top();
     }
 
