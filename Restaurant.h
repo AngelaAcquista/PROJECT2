@@ -23,23 +23,23 @@ class Restaurant {
         }
 
 
-        string getTitle() {
+        string getTitle() const{
             return title;
         }
 
-        string getPhone() {
+        string getPhone() const{
             return phone;
         }
 
-        float getRating() {
+        float getRating() const{
             return rating;
         }
 
-        string getAddress() {
+        string getAddress() const{
             return address;
         }
 
-        bool operator<(const Restaurant& other)const{
+        bool operator<(const Restaurant& other) const{
             
             return rating < other.rating; 
         }
