@@ -20,9 +20,9 @@ class MaxHeap{
       }
     }
 
-    float highestrating(){
+    float highestratedrestaurant(){
       
-      return (heap.top()).getRating();
+      return heap.top();
     }
 
     vector<Restaurant> sortedrestaurants(){
