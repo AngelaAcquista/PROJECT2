@@ -16,7 +16,7 @@ class MaxHeap{
       
     }
     float highestrating(){
-      
+      return heap.top();
     }
     bool isempty() const{
       return heap.empty();
