@@ -1,4 +1,5 @@
 #pragma once 
+#include "Restaurant.h"
 #include <vector>
 #include <iostream>
 #include <queue>
@@ -7,26 +8,26 @@ using namespace std;
 
 class MaxHeap{
 
-  priority_queue<float> heap;
+  priority_queue<Restaurant, vector<Restaurant>> heap;
 
   public:
 
-    void insert(const vector<float>& ratings){
+    void insert(const vector<Restaurant>& restaurants){
 
-      for(float rating : ratings){
+      for(Restaurant restaurant : restaurants){
         
-        heap.push(rating);
+        heap.push(restaurant);
       }
     }
 
     float highestrating(){
       
-      return heap.top();
+      return (heap.top()).getRating();
     }
 
-    vector<float> sortedratings(){
+    vector<Restaurant> sortedrestaurants(){
       
-      vector<float> sorted;
+      vector<Restaurant> sorted;
       
       while(!heap.empty()){
 
