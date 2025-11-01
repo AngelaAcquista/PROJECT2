@@ -65,11 +65,11 @@ int main(){
        string address = restaurantData[i][6];
 
         restaurants.emplace_back(title, phone, rating, address);
-        cout << title << endl;
-        cout << category << endl;
-        cout << rating << endl;
-        cout << phone << endl;
-        cout << address << endl;
+        // cout << title << endl;
+        // cout << category << endl;
+        // cout << rating << endl;
+        // cout << phone << endl;
+        // cout << address << endl;
     }
 
 
