@@ -15,7 +15,7 @@ class Restaurant {
 
         Restaurant() : title(""), phone(""), rating(0.0f), address("") {}
 
-        Restaurant(const string& title, const string& phone, float rating, const string& address) {
+        Restaurant(const string& title, const string& phone, const float& rating, const string& address) {
             this->title = title;
             this->phone = phone;
             this->rating = rating;
