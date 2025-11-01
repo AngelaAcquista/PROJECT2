@@ -15,10 +15,7 @@ class MaxHeap{
     void insert(){
       
     }
-    float extractmax(){
-      
-    }
-    float peekmax(){
+    float highestrating(){
       
     }
     bool isempty() const{
