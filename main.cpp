@@ -2,6 +2,7 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include "MaxHeap.h"
 #include "Hashtable.h"
 #include "Restaurant.h"
 #include <vector>
