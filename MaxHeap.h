@@ -20,7 +20,7 @@ class MaxHeap{
       }
     }
 
-    float highestratedrestaurant(){
+    Restaurant highestratedrestaurant(){
       
       return heap.top();
     }
