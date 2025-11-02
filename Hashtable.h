@@ -112,9 +112,20 @@ class Hashtable {
 
         }
 
-        vector<Restaurant>& search(const string& key){
+        vector<Restaurant> search(const string& key){
             //searches for the list of restaurants based on food category
             //and location
+            int hashIndex = hash(key);
+
+            if (table[hashIndex].empty()) {
+                searchSuccess = false;
+                return {};
+            }
+            else {
+                searchSuccess = true;
+
+            }
+
 
 
         }
