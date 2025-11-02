@@ -36,8 +36,6 @@ class Hashtable {
                }
            }
 
-
-
         }
         int hash(const string& key) {
             /*performs the hashing operation on the string and
@@ -57,11 +55,11 @@ class Hashtable {
             table.resize(80009);
             this->numEntries = 0;
             this->numBuckets = table.size();
-            this->loadFactor =  numEntries/(table.size());
+            this->loadFactor =  float(numEntries)/(table.size());
         }
 
         void updateLoadFactor() {
-                this->loadFactor = numEntries / table.size();
+                this->loadFactor = float(numEntries) / table.size();
         }
 
         float getLoadFactor() {
