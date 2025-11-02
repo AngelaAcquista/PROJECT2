@@ -106,8 +106,9 @@ class Hashtable {
 
         }
 
-        Restaurant& search(const string& key){
-
+        vector<Restaurant>& search(const string& key){
+            //searches for the list of restaurants based on food category
+            //and location
 
         }
 
@@ -118,7 +119,7 @@ class Hashtable {
             }
             table.resize(80009);
             this->numEntries = 0;
-            this->loadFactor =  numEntries/(table.size());
+            this->loadFactor =  float(numEntries)/float(table.size());
         }
 
 
