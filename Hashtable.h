@@ -24,6 +24,12 @@ class Hashtable {
             updatedTable.resize(numBuckets * 2);
 
             //hash all existing keys in the old hashtable
+           for (auto &currList: oldTable) {
+               for (auto &pair: currList) {
+                   int newIndex = hash(pair.first);
+                   updatedTable[newIndex].push_back(pair);
+               }
+           }
 
             table = updatedTable;
             //recalculate table size and load factor
