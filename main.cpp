@@ -57,9 +57,9 @@ int main(){
           restaurantData.push_back(currRow);
       }
   }
-
     //declare hashmap
     Hashtable hashmap();
+    
     for (int i = 0; i < 10; i++){
 
        string title = restaurantData[i][0];
