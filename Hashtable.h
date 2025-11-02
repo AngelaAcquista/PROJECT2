@@ -92,6 +92,7 @@ class Hashtable {
                                 keyFound = true;
                             }
                     }
+                    //for collision handling
                     if (keyFound == false) {
                         vector<Restaurant> vec = {obj};
                         pair<string, vector<Restaurant>> keyValue(key, vec);
@@ -109,7 +110,8 @@ class Hashtable {
         vector<Restaurant>& search(const string& key){
             //searches for the list of restaurants based on food category
             //and location
-            
+
+
         }
 
         void makeEmpty() {
