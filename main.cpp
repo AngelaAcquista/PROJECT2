@@ -57,23 +57,22 @@ int main(){
           restaurantData.push_back(currRow);
       }
   }
-    //declare a vector of restaurant objects
-    vector<Restaurant> restaurants;
-    
+
+    //declare hashmap
+    Hashtable hashmap();
     for (int i = 0; i < 10; i++){
-        
+
        string title = restaurantData[i][0];
        string category = restaurantData[i][2];
        float rating =  stof(restaurantData[i][3]);
        string phone = restaurantData[i][5];
        string address = restaurantData[i][6];
 
-        restaurants.emplace_back(title, phone, rating, address);
-        cout << title << endl;
-        cout << category << endl;
-        cout << rating << endl;
-        cout << phone << endl;
-        cout << address << endl;
+        //create key-value pair
+        string key = category + ": ";
+
+        Restaurant currRestaurant(title, phone, rating, address);
+
     }
   return 0;
 }
