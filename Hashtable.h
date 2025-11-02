@@ -85,10 +85,17 @@ class Hashtable {
                     table[hashIndex].push_back(keyValue);
                 }
                 else {
+                    bool keyFound = false;
                     for (auto &pair: table[hashIndex]) {
                             if (pair.first == key) {
                                 pair.second.push_back(obj);
+                                keyFound = true;
                             }
+                    }
+                    if (keyFound == false) {
+                        vector<Restaurant> vec = {obj};
+                        pair<string, vector<Restaurant>> keyValue(key, vec);
+                        table[hashIndex].push_back(keyValue);
                     }
                 }
             updateLoadFactor();
