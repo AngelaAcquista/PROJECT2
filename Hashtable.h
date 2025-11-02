@@ -85,11 +85,11 @@ class Hashtable {
                     table[hashIndex].push_back(keyValue);
                 }
                 else {
-                   for each (pair<string, vector<Restaurant>> &item in table[hashIndex]) {
-                      if (item.first == key) {
-                        item.second.push_back(obj);
-                      }
-                   }
+                    for (auto &pair: table[hashIndex]) {
+                            if (pair.first == key) {
+                                pair.second.push_back(obj);
+                            }
+                    }
                 }
             updateLoadFactor();
             //rehash the table if necessary
