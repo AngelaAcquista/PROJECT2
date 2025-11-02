@@ -54,12 +54,12 @@ class Hashtable {
             //initialize the hashtable with default values
             table.resize(80009);
             this->numEntries = 0;
-            this->numBuckets = table.size();
-            this->loadFactor =  float(numEntries)/(table.size());
+            this->numBuckets = int(table.size());
+            this->loadFactor =  float(numEntries)/float(table.size());
         }
 
         void updateLoadFactor() {
-                this->loadFactor = float(numEntries) / table.size();
+                this->loadFactor = float(numEntries) / float(table.size());
         }
 
         float getLoadFactor() {
@@ -106,7 +106,7 @@ class Hashtable {
 
         }
 
-        bool search(const string& key) {
+        Restaurant& search(const string& key){
 
 
         }
