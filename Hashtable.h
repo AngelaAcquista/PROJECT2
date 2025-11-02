@@ -16,6 +16,7 @@ class Hashtable {
         int numBuckets;
         float loadFactor;
         float maxLoadFactor = 0.75;
+        bool searchSuccess = false;
 
         void rehash() {
             vector<list<pair<string, vector<Restaurant>>>> oldTable = table;
@@ -72,6 +73,10 @@ class Hashtable {
 
         int getNumBuckets() {
                 return numBuckets;
+        }
+
+        bool getSearchSuccess() {
+            return this->searchSuccess;
         }
 
 
