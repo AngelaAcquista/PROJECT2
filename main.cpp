@@ -60,7 +60,7 @@ int main(){
     //declare a vector of restaurant objects
     vector<Restaurant> restaurants;
     
-    for (int i = 0; i < 1; i++){
+    for (int i = 0; i < 10; i++){
         
        string title = restaurantData[i][0];
        string category = restaurantData[i][2];
@@ -69,11 +69,11 @@ int main(){
        string address = restaurantData[i][6];
 
         restaurants.emplace_back(title, phone, rating, address);
-        // cout << title << endl;
-        // cout << category << endl;
-        // cout << rating << endl;
-        // cout << phone << endl;
-        // cout << address << endl;
+        cout << title << endl;
+        cout << category << endl;
+        cout << rating << endl;
+        cout << phone << endl;
+        cout << address << endl;
     }
   return 0;
 }
