@@ -121,14 +121,15 @@ class Hashtable {
                 searchSuccess = false;
                 return {};
             }
-            else {
-                searchSuccess = true;
 
+            searchSuccess = true;
+            for (auto &pair: table[hashIndex]) {
+                if (pair.first == key) {
+                    return pair.second;
+                }
             }
-
-
-
         }
+
 
         void makeEmpty() {
             //deletes all entries in the hashtable
