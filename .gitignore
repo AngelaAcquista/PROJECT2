@@ -1,0 +1,20 @@
+# CMake build folders
+cmake-build-*/
+build/
+out/
+
+# IDE settings
+.idea/
+.vscode/
+*.iml
+
+# Binaries
+*.exe
+*.dll
+*.obj
+*.o
+*.out
+
+# OS-specific files
+.DS_Store
+Thumbs.db
