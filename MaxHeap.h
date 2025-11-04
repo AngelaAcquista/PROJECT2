@@ -39,9 +39,9 @@ class MaxHeap{
   }
   public:
 
-    void insert(float& newrating){
+    void insert(const Restaurant& newrestaurant){
 
-      heap.push_back(newrating);
+      heap.push_back(newrestaurant);
       heapifyup(heap.size() - 1);
     }
     const Restaurant peekmax(){
