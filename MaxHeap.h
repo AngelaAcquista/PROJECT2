@@ -46,10 +46,16 @@ class MaxHeap{
     }
     const Restaurant peekmax(){
 
+      if(isempty()){
+        return; 
+      }
       return heap.at(0);
     }
     Restaurant extractmax(){
-
+      
+      if(isempty()){
+        return; 
+      }
       if (heap.size() == 1){
         
             Restaurant max = heap.at(0);
