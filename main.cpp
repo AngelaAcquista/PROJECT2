@@ -15,7 +15,7 @@ int main(){
     vector<vector<string>> restaurantData;
 
   //read and extract data from 10 files
-  for (int i = 1; i <= 2; i++){
+  for (int i = 1; i <= 10; i++){
       
       string filePath = "dataset/380K_US_Restaurants_";
       filePath += to_string(i) + ".csv";
@@ -73,7 +73,6 @@ int main(){
             rating = 0.0f;
         }
 
-
         //create key-value pair
         string cityState;
         int commaCount = 0;
@@ -92,14 +91,42 @@ int main(){
 
     }
 
+    //add code here for inserting into max heap or somewhere else idk lol
 
 
     //print menu options and handle user input
-    bool windowOpen = true;
-    while (windowOpen) {
+     bool windowOpen = true;
+     string foodCategory;
+     string city;
+     string state;
+     while (windowOpen) {
+         cout << "Welcome to Restaurant Scout- find top-rated restaurants near you" << endl;
+         cout << "Enter food preference (ex: Fast food restaurant): " << endl;
+         getline(cin, foodCategory);
 
-        windowOpen = false;
-    }
+         cout << "Enter city (ex: Gainesville): ";
+         getline(cin, city);
+
+         cout << "Enter state (ex: FL): ";
+         getline(cin, state);
+
+         string searchKey = foodCategory + ": " + city + ", " + state;
+         vector<Restaurant> restaurants = hashmap.search(searchKey);
+
+         cout << searchKey << endl;
+         if (restaurants.empty()) {
+             cout << "No restaurants found" << endl;
+         }
+         else {
+             cout << "Restaurants found: " << endl;
+             for (int i = 0; i < restaurants.size(); i++) {
+                 cout << restaurants[i].getRating() << endl;
+                 cout << restaurants[i].getPhone() << endl;
+                 cout << restaurants[i].getAddress() << endl;
+             }
+         }
+         windowOpen = false;
+     }
 
 
 
