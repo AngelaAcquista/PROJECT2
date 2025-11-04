@@ -56,9 +56,8 @@ int main(){
       }
   }
 
-    //declare hashmap
+    //declare hashmap and use the insert function
     Hashtable hashmap;
-    
     for (int i = 0; i < restaurantData.size(); i++){
 
        string title = restaurantData[i][0];
@@ -83,17 +82,23 @@ int main(){
                 commaCount++;
                 if (commaCount == 2) {
                     cityState = address.substr(j + 2);
-                    break;
                 }
             }
         }
-
-        string key = category + ": ";
-
+        cityState = cityState.substr(0, cityState.find(',') + 4);
+        string key = category + ": " + cityState;
         Restaurant currRestaurant(title, phone, rating, address);
         hashmap.insert(key, currRestaurant);
 
-        cout << cityState << endl;
+    }
+
+
+
+    //print menu options and handle user input
+    bool windowOpen = true;
+    while (windowOpen) {
+
+        windowOpen = false;
     }
 
 

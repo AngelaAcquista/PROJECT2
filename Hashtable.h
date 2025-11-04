@@ -141,5 +141,4 @@ class Hashtable {
             this->loadFactor =  float(numEntries)/float(table.size());
         }
 
-
 };
