@@ -39,7 +39,7 @@ class MaxHeap{
   }
   public:
 
-    void insert(float& rating){
+    void insert(float& newrating){
 
       heap.push_back(newrating);
       heapifyup(heap.size() - 1);
@@ -47,14 +47,14 @@ class MaxHeap{
     const Restaurant peekmax(){
 
       if(isempty()){
-        return; 
+        return Restaurant(); 
       }
       return heap.at(0);
     }
     Restaurant extractmax(){
       
       if(isempty()){
-        return; 
+        return Restaurant(); 
       }
       if (heap.size() == 1){
         
