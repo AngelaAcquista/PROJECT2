@@ -44,13 +44,24 @@ class MaxHeap{
       heap.push_back(newrating);
       heapifyup(heap.size() - 1);
     }
-    Restaurant peekmax(){
+    const Restaurant peekmax(){
 
-      
+      return heap.at(0);
     }
     Restaurant extractmax(){
 
-      
+      if (heap.size() == 1){
+        
+            Restaurant max = heap.at(0);
+            heap.pop_back();
+            return max;
+      }
+      Restaurant max = heap.at(0);
+      heap.at(0) = heap.back();
+      heap.pop_back();
+      heapifydown(0);
+
+      return max;
     }
     bool isempty() const{
       
