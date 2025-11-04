@@ -120,9 +120,11 @@ int main(){
          else {
              cout << "Restaurants found: " << endl;
              for (int i = 0; i < restaurants.size(); i++) {
-                 cout << restaurants[i].getRating() << endl;
-                 cout << restaurants[i].getPhone() << endl;
-                 cout << restaurants[i].getAddress() << endl;
+                 cout << "Name: " << restaurants[i].getTitle() << endl;
+                 cout << "Rating: " << restaurants[i].getRating() << endl;
+                 cout << "Phone: " << restaurants[i].getPhone() << endl;
+                 cout << "Address: " << restaurants[i].getAddress() << endl;
+                 cout << endl;
              }
          }
          windowOpen = false;
