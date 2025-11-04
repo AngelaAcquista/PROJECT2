@@ -14,8 +14,8 @@ int main(){
     //declare a 2D vector to organize data for each restaurant
     vector<vector<string>> restaurantData;
 
-  //read and extract data from 15 files
-  for (int i = 1; i <= 15; i++){
+  //read and extract data from 10 files
+  for (int i = 1; i <= 2; i++){
       
       string filePath = "dataset/380K_US_Restaurants_";
       filePath += to_string(i) + ".csv";
@@ -29,12 +29,10 @@ int main(){
       //to avoid reading the header row
       string line;
       getline(file, line);
-      //testing the first 10 rows from the dataset for now
+
       //for each iteration, extract the necessary data for each restaurant
-      for (int row = 0; row < 10; row++){
-          
-          string line;
-          getline(file, line);
+      while (getline(file, line)){
+
           istringstream stream(line);
           vector<string> currRow;
           string dataPoint;
@@ -57,22 +55,49 @@ int main(){
           restaurantData.push_back(currRow);
       }
   }
+
     //declare hashmap
-    Hashtable hashmap();
+    Hashtable hashmap;
     
-    for (int i = 0; i < 10; i++){
+    for (int i = 0; i < restaurantData.size(); i++){
 
        string title = restaurantData[i][0];
        string category = restaurantData[i][2];
-       float rating =  stof(restaurantData[i][3]);
+       string ratingStr = restaurantData[i][3];
        string phone = restaurantData[i][5];
        string address = restaurantData[i][6];
+       float rating = 0.0f;
+
+        try {
+            rating = stof(ratingStr);
+        } catch (const invalid_argument&) {
+            rating = 0.0f;
+        }
+
 
         //create key-value pair
+        string cityState;
+        int commaCount = 0;
+        for (int j = 0; j < address.length(); j++) {
+            if (address[j] == ',') {
+                commaCount++;
+                if (commaCount == 2) {
+                    cityState = address.substr(j + 2);
+                    break;
+                }
+            }
+        }
+
         string key = category + ": ";
 
         Restaurant currRestaurant(title, phone, rating, address);
+        hashmap.insert(key, currRestaurant);
 
+        cout << cityState << endl;
     }
+
+
+
+
   return 0;
 }
