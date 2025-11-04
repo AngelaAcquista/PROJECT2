@@ -104,16 +104,15 @@ int main(){
          cout << "Enter food preference (ex: Fast food restaurant): " << endl;
          getline(cin, foodCategory);
 
-         cout << "Enter city (ex: Gainesville): ";
+         cout << "Enter city (ex: Gainesville): " << endl;
          getline(cin, city);
 
-         cout << "Enter state (ex: FL): ";
+         cout << "Enter state (ex: FL): " << endl;
          getline(cin, state);
 
          string searchKey = foodCategory + ": " + city + ", " + state;
          vector<Restaurant> restaurants = hashmap.search(searchKey);
 
-         cout << searchKey << endl;
          if (restaurants.empty()) {
              cout << "No restaurants found" << endl;
          }
