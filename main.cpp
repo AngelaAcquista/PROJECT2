@@ -10,6 +10,7 @@
 #include <vector>
 
 using namespace std;
+using namespace sf;
 
 int main(){
   //declare a 2D vector to organize data for each restaurant
