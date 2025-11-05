@@ -18,8 +18,7 @@ void loadingRestaurant() {
 
     //read and extract data from 15 files
     for (int i = 1; i <= 15; i++){
-
-        string filePath = "../dataset/380K_US_Restaurants_";
+        string   filePath = "../dataset/380K_US_Restaurants_";
         filePath += to_string(i) + ".csv";
         ifstream file(filePath);
 
