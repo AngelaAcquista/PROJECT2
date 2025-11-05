@@ -3,8 +3,19 @@
 //
 
 #include "FoodTypePage.h"
-#include <iostream>
 
+#include <format>
+
+#include "Hashtable.h"
+#include "MaxHeap.h"
+#include "Restaurant.h"
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <vector>
+#include <iomanip>
+
+using namespace std;
 FoodTypePage::FoodTypePage() {
     if (!font.loadFromFile("../assets/MomoTrustDisplay-Regular.ttf")) {
         std::cerr << "Error loading font" << std::endl;
@@ -23,6 +34,19 @@ FoodTypePage::FoodTypePage() {
     subtitle.setCharacterSize(24);
     subtitle.setFillColor(sf::Color(110,110,110));
     subtitle.setPosition(500.f - subtitle.getLocalBounds().width / 2.f, 310.f);
+
+    //Results Info
+    searchResult.setFont(font);
+    searchResult.setCharacterSize(22);
+    searchResult.setFillColor(sf::Color(40,40,40));
+    searchResult.setPosition(resultBox.getPosition().x + 15.f, resultBox.getPosition().y + 20.f);
+
+    //Box for result Info
+    resultBox.setSize(sf::Vector2f(520.f, 130.f));
+    resultBox.setFillColor(sf::Color(255,255,255, 230));
+    resultBox.setOutlineColor(sf::Color(200,200,200));
+    resultBox.setOutlineThickness(2);
+    resultBox.setPosition(240.f, 520.f);
 
     //Input box Info
     in.setSize(sf::Vector2f(400.f, 55.f));
@@ -69,7 +93,80 @@ FoodTypePage::FoodTypePage() {
         icon.setScale(0.11f, 0.11f);
         icon.setPosition(205.f, 240.f);
     }
+    //Loading restaurant data into Hash
+    loadData();
 }
+
+void FoodTypePage::loadData() {
+    std::vector<std::vector<std::string>> restaurantData;
+
+    for (int i = 1; i <= 15; i++) {
+        std::string filePath = "../dataset/380K_US_Restaurants_" + std::to_string(i) + ".csv";
+        std::ifstream file(filePath);
+
+        if (!file.is_open()) {
+            std::cerr << "Error opening " << filePath << std::endl;
+            continue;
+        }
+
+        std::string line;
+        getline(file, line); // skip header
+
+        for (int row = 0; row < 10; row++) { // just a few rows for testing
+            if (!getline(file, line)) break;
+
+            std::istringstream stream(line);
+            std::vector<std::string> currRow;
+            std::string dataPoint;
+
+            for (int col = 0; col < 7; col++) {
+                if (col == 6) {
+                    getline(stream, dataPoint, '[');
+                    if (dataPoint.size() > 4) dataPoint = dataPoint.substr(1, dataPoint.size() - 4);
+                    else dataPoint = "";
+                } else {
+                    getline(stream, dataPoint, ',');
+                }
+                currRow.push_back(dataPoint);
+            }
+            restaurantData.push_back(currRow);
+        }
+    }
+
+    // 🔹 Insert into hashtable
+    for (auto &row : restaurantData) {
+        if (row.size() < 7) continue;
+
+        std::string title = row[0];
+        std::string category = row[2];
+
+        std::transform(category.begin(), category.end(), category.begin(), ::tolower);
+        size_t findComma = category.find(',');
+        if (findComma != std::string::npos) category = category.substr(0, findComma);
+        size_t findSpace = category.find(' ');
+        if (findSpace != std::string::npos) category = category.substr(0, findSpace);
+
+        float rating = 0.0f;
+        try {
+            if (!row[3].empty()) rating = stof(row[3]);
+        }
+        catch (const invalid_argument& e) {
+            rating = 0.0f; //if conversion fails then jump to 0
+        }
+        catch (const out_of_range& e) {
+            rating = 0.0f; //if out_of_range then jump to 0
+        }
+        std::string phone = row[5];
+        std::string address = row[6];
+
+        Restaurant r(title, phone, rating, address);
+        std::string key = category; // Key = food type
+        restaurantTable.insert(key, r);
+    }
+
+    std::cout << "Hashtable loaded successfully.\n";
+}
+
 
 void FoodTypePage::Event(const sf::Event& event, const sf::RenderWindow& window) {
     if (event.type == sf::Event::MouseButtonPressed) {
@@ -106,8 +203,49 @@ void FoodTypePage::Event(const sf::Event& event, const sf::RenderWindow& window)
     }
 
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Enter) {
+        //Making sure that enter is pressed
+        if (event.type == sf::Event::KeyPressed) {
+            std::cout << "Key pressed: " << event.key.code << std::endl;
+        }
+
         if (!userIn.empty()) {
             std::cout << "Searching for food type: " << userIn << std::endl;
+
+            std::string input = userIn;
+            std::transform(input.begin(), input.end(), input.begin(), ::tolower);
+            size_t inSpace = input.find(' ');
+            if (inSpace != std::string::npos) input = input.substr(0, inSpace);
+
+            auto results = restaurantTable.search(input);
+
+            if (results.empty()) {
+                std::cout << "No restaurants found for " << userIn << std::endl;
+                searchResult.setString("No restaurants found for " + userIn);
+            } else {
+                MaxHeap heap;
+                heap.insert(results);
+                const Restaurant top = heap.highestratedrestaurant();
+
+                //Rating Info
+                std::ostringstream rating;
+                rating << std::fixed << std::setprecision(1) << top.getRating();
+
+                //Address Info
+                std::string formatAdd = top.getAddress();
+                std::replace(formatAdd.begin(), formatAdd.end(), ',', '\n');
+
+                const std::string dis = "Top-rated " + userIn + " restaurant:\n\n"
+                                        + "Name:\n " + top.getTitle() + "\n"
+                                        + "Rating:\n " + rating.str() + " Stars\n"
+                                        + "\nLocation:\n " + formatAdd
+                                        + "\n\n" + "Phone #:\n " + top.getPhone();
+                searchResult.setString(dis);
+
+                //Adjusting text placement + box size
+                searchResult.setPosition(resultBox.getPosition().x + 15.f, resultBox.getPosition().y + 20.f);
+                float textHeight = searchResult.getLocalBounds().height + 50.f;
+                resultBox.setSize(sf::Vector2f(resultBox.getSize().x, textHeight));
+            }
         }
     }
 }
@@ -129,6 +267,11 @@ void FoodTypePage::draw(sf::RenderWindow& window) const {
 
     if (userIsTyping && showCursor) {
         window.draw(textCursor);
+    }
+
+    if (!searchResult.getString().isEmpty()) {
+        window.draw(resultBox);
+        window.draw(searchResult);
     }
 }
 

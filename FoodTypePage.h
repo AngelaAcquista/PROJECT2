@@ -6,6 +6,7 @@
 #define RESTAURANTFINDER_FOODTYPEPAGE_H
 
 #pragma once
+#include "Hashtable.h"
 #include <SFML/Graphics.hpp>
 #include <string>
 
@@ -14,9 +15,10 @@ class FoodTypePage {
     sf::Font font;
     sf::Text title, subtitle;
     sf::Text searchTxt, extraTxt;
-    sf::RectangleShape in, searchButton;
+    sf::RectangleShape in, searchButton, resultBox;
     sf::Sprite icon;
     sf::Texture iconTexture;
+    sf::Text searchResult;
 
     //User typing info
     std::string userIn;
@@ -26,6 +28,9 @@ class FoodTypePage {
     sf::RectangleShape textCursor;
     sf::Clock cursorTimer;
     bool showCursor = false;
+
+    Hashtable restaurantTable;
+    void loadData(); //helper func
 
 public:
     FoodTypePage();
