@@ -23,14 +23,10 @@ class MaxHeap{
     int l = 2 * n + 1;
     int r = 2 * n + 2;
 
-    if(l < heap.size() && heap[l] > heap[largest]){
-          
-        largest = l;
-    }
-    if(r < heap.size() && heap[r] > heap[largest]){
-          
-        largest = r;
-    }
+    if(l < heap.size() && heap[l] > heap[largest]) largest = l;
+    
+    if(r < heap.size() && heap[r] > heap[largest]) largest = r;
+    
     if(largest != n){
           
         swap(heap[n], heap[largest]);
@@ -46,16 +42,14 @@ class MaxHeap{
     }
     const Restaurant peekmax(){
 
-      if(isempty()){
-        return Restaurant(); 
-      }
+      if(isempty()) return Restaurant(); 
+      
       return heap.at(0);
     }
     Restaurant extractmax(){
       
-      if(isempty()){
-        return Restaurant(); 
-      }
+      if(isempty()) return Restaurant(); 
+      
       if(heap.size() == 1){
         
             Restaurant max = heap.at(0);
@@ -69,12 +63,7 @@ class MaxHeap{
 
       return max;
     }
-    bool isempty() const{
-      
-      return heap.empty();
-    }
-    size_t size() const{
+    bool isempty()const{ return heap.empty(); }
 
-      return heap.size();
-    }
+    size_t size() const{ return heap.size(); }
 };
