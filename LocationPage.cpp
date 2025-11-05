@@ -233,8 +233,10 @@ void LocationPage::Event(const sf::Event& event, const sf::RenderWindow& window)
             searchResult.setString("No restaurants found in " + userIn);
         } else {
             MaxHeap heap;
-            heap.insert(results);
-            const Restaurant top = heap.highestratedrestaurant();
+            for (const auto& result : results) {
+                heap.insert(result);
+            }
+            const Restaurant top = heap.peekmax();
 
             // Rating Info
             std::ostringstream rating;

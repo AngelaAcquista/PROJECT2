@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <utility>
 #include <list>
 #include <string>
 #include "Restaurant.h"
@@ -93,8 +94,13 @@ class Hashtable {
                     bool keyFound = false;
                     for (auto &pair: table[hashIndex]) {
                             if (pair.first == key) {
-                                pair.second.push_back(obj);
                                 keyFound = true;
+                                for (int i = 0; i < pair.second.size(); i++) {
+                                    if (pair.second[i].getAddress() == obj.getAddress()) {
+                                        return;
+                                    }
+                                }
+                                pair.second.push_back(obj);
                             }
                     }
                     //for collision handling
@@ -140,6 +146,5 @@ class Hashtable {
             this->numEntries = 0;
             this->loadFactor =  float(numEntries)/float(table.size());
         }
-
 
 };
