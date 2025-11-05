@@ -11,7 +11,7 @@ class MaxHeap{
 
   void heapifyup(int n){
     
-    while (n != 0 && heap[n] > heap[(n - 1) / 2]){
+    while(n != 0 && heap[n] > heap[(n - 1) / 2]){
       
         swap(heap[n], heap[(n - 1) / 2]);
         n = (n - 1) / 2;
@@ -23,15 +23,15 @@ class MaxHeap{
     int l = 2 * n + 1;
     int r = 2 * n + 2;
 
-    if (l < heap.size() && heap[l] > heap[largest]){
+    if(l < heap.size() && heap[l] > heap[largest]){
           
         largest = l;
     }
-    if (r < heap.size() && heap[r] > heap[largest]){
+    if(r < heap.size() && heap[r] > heap[largest]){
           
         largest = r;
     }
-    if (largest != n){
+    if(largest != n){
           
         swap(heap[n], heap[largest]);
         heapifydown(largest);
@@ -56,7 +56,7 @@ class MaxHeap{
       if(isempty()){
         return Restaurant(); 
       }
-      if (heap.size() == 1){
+      if(heap.size() == 1){
         
             Restaurant max = heap.at(0);
             heap.pop_back();
