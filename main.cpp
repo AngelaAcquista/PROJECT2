@@ -1,4 +1,5 @@
 #include <iostream>
+#include <chrono>
 #include <fstream>
 #include <sstream>
 #include <string>
@@ -10,19 +11,17 @@
 using namespace std;
 
 int main(){
-
-    //declare a 2D vector to organize data for each restaurant
-    vector<vector<string>> restaurantData;
+  //declare a 2D vector to organize data for each restaurant
+  vector<vector<string>> restaurantData;
 
   //read and extract data from 10 files
-  for (int i = 1; i <= 10; i++){
+  for(int i = 1; i <= 10; i++){
       
       string filePath = "dataset/380K_US_Restaurants_";
       filePath += to_string(i) + ".csv";
       ifstream file(filePath);
-
       //add error handling if a file cannot be opened
-      if (!file.is_open()){
+      if(!file.is_open()){
           
           cerr << "Error opening " << filePath << endl;
       }
@@ -31,22 +30,22 @@ int main(){
       getline(file, line);
 
       //for each iteration, extract the necessary data for each restaurant
-      while (getline(file, line)){
+      while(getline(file, line)){
 
           istringstream stream(line);
           vector<string> currRow;
           string dataPoint;
 
           //for each row, read the extract the data from the first 7 columns
-          for (int col = 0; col < 7; col++){
+          for(int col = 0; col < 7; col++){
               
-              if (col == 6){
+              if(col == 6){
                   
                   getline(stream, dataPoint, '[');
                   dataPoint = dataPoint.substr(1, dataPoint.size() - 4);
                   currRow.push_back(dataPoint);
-              }
-              else{
+                  
+              }else{
                   
                   getline(stream, dataPoint, ',');
                   currRow.push_back(dataPoint);
@@ -55,10 +54,10 @@ int main(){
           restaurantData.push_back(currRow);
       }
   }
-
-    //declare hashmap and use the insert function
-    Hashtable hashmap;
-    for (int i = 0; i < restaurantData.size(); i++){
+  //declare hashmap and use the insert function
+  Hashtable hashmap;
+    
+  for(int i = 0; i < restaurantData.size(); i++){
 
        string title = restaurantData[i][0];
        string category = restaurantData[i][2];
@@ -67,19 +66,27 @@ int main(){
        string address = restaurantData[i][6];
        float rating = 0.0f;
 
-        try {
+        try{
+            
             rating = stof(ratingStr);
-        } catch (const invalid_argument&) {
+            
+        }catch(const invalid_argument&){
+            
             rating = 0.0f;
         }
 
         //create key-value pair
         string cityState;
         int commaCount = 0;
-        for (int j = 0; j < address.length(); j++) {
-            if (address[j] == ',') {
+      
+        for(int j = 0; j < address.length(); j++){
+            
+            if(address[j] == ','){
+                
                 commaCount++;
-                if (commaCount == 2) {
+                
+                if(commaCount == 2){
+                    
                     cityState = address.substr(j + 2);
                 }
             }
@@ -90,16 +97,17 @@ int main(){
         hashmap.insert(key, currRestaurant);
 
     }
-
     //add code here for inserting into max heap or somewhere else idk lol
-
+    MaxHeap();
 
     //print menu options and handle user input
      bool windowOpen = true;
      string foodCategory;
      string city;
      string state;
-     while (windowOpen) {
+    
+     while(windowOpen){
+         
          cout << "Welcome to Restaurant Scout- find top-rated restaurants near you" << endl;
          cout << "Enter food preference (ex: Fast food restaurant): " << endl;
          getline(cin, foodCategory);
@@ -113,12 +121,16 @@ int main(){
          string searchKey = foodCategory + ": " + city + ", " + state;
          vector<Restaurant> restaurants = hashmap.search(searchKey);
 
-         if (restaurants.empty()) {
+         if(restaurants.empty()){
+             
              cout << "No restaurants found" << endl;
-         }
-         else {
+             
+         }else{
+             
              cout << "Restaurants found: " << endl;
-             for (int i = 0; i < restaurants.size(); i++) {
+             
+             for(int i = 0; i < restaurants.size(); i++){
+                 
                  cout << "Name: " << restaurants[i].getTitle() << endl;
                  cout << "Rating: " << restaurants[i].getRating() << endl;
                  cout << "Phone: " << restaurants[i].getPhone() << endl;
@@ -128,9 +140,5 @@ int main(){
          }
          windowOpen = false;
      }
-
-
-
-
   return 0;
 }
