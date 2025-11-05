@@ -1,5 +1,6 @@
 #include <iostream>
 #include <chrono>
+#include <SFML/Graphics.hpp>
 #include <fstream>
 #include <sstream>
 #include <string>
@@ -98,7 +99,7 @@ int main(){
 
     }
     //add code here for inserting into max heap or somewhere else idk lol
-    MaxHeap();
+    MaxHeap maxheap;
 
     //print menu options and handle user input
      bool windowOpen = true;
