@@ -17,7 +17,9 @@ void loadingRestaurant() {
     //declare a 2D vector to organize data for each restaurant
     vector<vector<string>> restaurantData;
 
-    //read and extract data from 15 files
+    //read and extract data from 10 files
+    //reference for reading a csv file:
+    //https://medium.com/@ryan_forrester_/reading-csv-files-in-c-how-to-guide-35030eb378ad
     for (int i = 1; i <= 10; i++){
         string   filePath = "../dataset/380K_US_Restaurants_";
         filePath += to_string(i) + ".csv";
@@ -32,9 +34,9 @@ void loadingRestaurant() {
         string line;
         getline(file, line);
 
-        //testing the first 10 rows from the dataset for now
+        //total # of datapoints: 112,000
         //for each iteration, extract the necessary data for each restaurant
-        for (int row = 0; row < 10; row++){
+        for (int row = 0; row < 1600; row++){
             string line;
             getline(file, line);
             istringstream stream(line);
@@ -78,9 +80,10 @@ void loadingRestaurant() {
 }
 
 int main() {
-    loadingRestaurant(); //run this logic first
+
     RenderWindow window(VideoMode(1000, 1100), "Restaurant Finder", Style::Titlebar | Style::Close);
     window.setFramerateLimit(60);
+    //loadingRestaurant();
 
     //Different windows
     MainPage mainPage;

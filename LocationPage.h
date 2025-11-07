@@ -59,8 +59,8 @@ public:
             string line;
             getline(file, line); // skip header
 
-
-            for (int row = 0; row < 10; row++) { // just a few for testing: will change later
+            //total # of datapoints: 112,000
+            for (int row = 0; row < 1600; row++) {
                 if (!getline(file, line)) break;
 
                 istringstream stream(line);
