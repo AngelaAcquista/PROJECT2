@@ -12,9 +12,11 @@
 #include <vector>
 #include <sstream>
 #include <fstream>
+#include <chrono>
 
 using namespace sf;
 using namespace std;
+using namespace std::chrono;
 
 class LocationPage{
 
@@ -28,6 +30,7 @@ class LocationPage{
     bool showCursor = false, userIsTyping = false, showResult = false;
     string userIn;
     Hashtable locationTable;
+
 
 public:
 
@@ -239,12 +242,29 @@ public:
                     searchResult.setString("No restaurants found in " + userIn);
                     
                 }else{
-                    
+                    auto hashTableStart = high_resolution_clock::now();
+                    Restaurant hashtableTop = results[0];
+                    for (const auto& r: results) {
+                        if (r.getRating() > hashtableTop.getRating()) {
+                            hashtableTop = r;
+                        }
+                    }
+
+                    auto hashTableEnd = high_resolution_clock::now();
+                    duration<double, std::milli> hashTableTime = hashTableEnd - hashTableStart;
+                    cout << "Hashtable time: " << hashTableTime.count() << " ms" << endl;
+
                     MaxHeap heap;
-                    
+
                     for(const auto& result : results) heap.insert(result);
-                    
+
+                    auto maxHeapStart = high_resolution_clock::now();
                     const Restaurant top = heap.peekmax();
+                    auto maxHeapEnd = high_resolution_clock::now();
+                    duration<double, std::milli> maxHeapTime = maxHeapEnd - maxHeapStart;
+                    cout << "MaxHeap time: " << maxHeapTime.count() << " ms" << endl;
+                    
+
                     // Rating Info
                     ostringstream rating;
                     rating << fixed << setprecision(1) << top.getRating();
