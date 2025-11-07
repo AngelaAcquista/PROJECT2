@@ -21,7 +21,7 @@ void loadingRestaurant(){
     //https://medium.com/@ryan_forrester_/reading-csv-files-in-c-how-to-guide-35030eb378ad
     for(int i = 1; i <= 10; i++){
         
-        string   filePath = "../dataset/380K_US_Restaurants_";
+        string filePath = "../dataset/380K_US_Restaurants_";
         filePath += to_string(i) + ".csv";
         ifstream file(filePath);
         //add error handling if a file cannot be opened
@@ -33,11 +33,10 @@ void loadingRestaurant(){
         //for each iteration, extract the necessary data for each restaurant
         for(int row = 0; row < 1600; row++){
             
-            string line;
+            string dataPoint;
             getline(file, line);
             istringstream stream(line);
             vector<string> currRow;
-            string dataPoint;
             //for each row, read and extract the data from the first 7 columns
             for(int col = 0; col < 7; col++){
                 
@@ -62,13 +61,8 @@ void loadingRestaurant(){
 
     for(int i = 0; i < 10; i++){
         
-        string title = restaurantData[i][0];
-        string category = restaurantData[i][2];
-        float rating =  stof(restaurantData[i][3]);
-        string phone = restaurantData[i][5];
-        string address = restaurantData[i][6];
-        //create key-value pair
-        string key = category + ": ";
+        string title = restaurantData[i][0], category = restaurantData[i][2], phone = restaurantData[i][5], address = restaurantData[i][6], key = category + ": ";
+        float rating = stof(restaurantData[i][3]);
         Restaurant currRestaurant(title, phone, rating, address);
     }
     cout << "Finished running original PROJECT2 backend logic.\n";
