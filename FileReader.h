@@ -6,7 +6,7 @@
 
 using namespace std;
 
-class filereader{
+class FileReader{
 public:
   void Readandextract(vector<vector<string>>& data){
     
