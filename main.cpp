@@ -2,40 +2,16 @@
 #include "MainPage.h"
 #include "LocationPage.h"
 #include "FoodTypePage.h"
-#include "Hashtable.h"
-#include "MaxHeap.h"
-#include "FileReader.h"
-#include "Restaurant.h"
 #include <iostream>
 #include <string>
 
 using namespace std;
 using namespace sf;
 
-void loadingRestaurant(){
-    FileReader filereader;
-    //declare a 2D vector to organize data for each restaurant
-    vector<vector<string>> restaurantData;
-    //read and extract data from 10 files
-    //reference for reading a csv file:
-    //https://medium.com/@ryan_forrester_/reading-csv-files-in-c-how-to-guide-35030eb378ad
-    filereader.ReadFile(restaurantData);
-    //declare hashmap
-    Hashtable hashmap;
-
-    for(int i = 0; i < 10; i++){
-        
-        string title = restaurantData[i][0], category = restaurantData[i][2], phone = restaurantData[i][5], address = restaurantData[i][6], key = category + ": ";
-        float rating = stof(restaurantData[i][3]);
-        Restaurant currRestaurant(title, phone, rating, address);
-    }
-    cout << "Finished running original PROJECT2 backend logic.\n";
-}
 int main(){
 
     RenderWindow window(VideoMode(1000, 1100), "Restaurant Finder", Style::Titlebar | Style::Close);
     window.setFramerateLimit(60);
-    //loadingRestaurant();
     //Different windows
     MainPage mainPage;
     LocationPage locationPage;
