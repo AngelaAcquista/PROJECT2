@@ -67,8 +67,7 @@ public:
             buttons[i].setFillColor(Color::White);
             buttons[i].setOutlineColor(Color(180, 180, 180));
             buttons[i].setOutlineThickness(2);
-            float buttonX = centerX - buttonWidth / 2.f;
-            float buttonY = startY + i * 100.f;
+            float buttonX = centerX - buttonWidth / 2.f, buttonY = startY + i * 100.f;
             buttons[i].setPosition(buttonX, buttonY);
             // Icon
             if(!iconTexture[i].loadFromFile(icons[i])) cerr << "Error loading icon: " << icons[i] << std::endl;
