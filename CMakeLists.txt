@@ -16,7 +16,6 @@ FetchContent_MakeAvailable(SFML)
 
 add_executable(RestaurantFinder
         main.cpp
-        MainPage.cpp
         MainPage.h
         LocationPage.cpp
         LocationPage.h
