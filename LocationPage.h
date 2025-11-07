@@ -266,7 +266,7 @@ public:
 
                 //Display results
                 if (results.empty()) {
-                    cout << "No restaurants found in " << userIn << std::endl;
+                    cout << "No restaurants found in " << userIn << endl;
                     searchResult.setString("No restaurants found in " + userIn);
                 } else {
                     MaxHeap heap;
