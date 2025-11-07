@@ -113,11 +113,11 @@ public:
         searchResult.setFillColor(Color(40,40,40));
         searchResult.setPosition(resultBox.getPosition().x + 15.f, resultBox.getPosition().y + 20.f);
         //Box for result Info (same as FoodTypePage)
-        resultBox.setSize(Vector2f(520.f, 130.f));
+        resultBox.setSize(Vector2f(580.f, 130.f));
         resultBox.setFillColor(Color(255,255,255, 230));
         resultBox.setOutlineColor(Color(200,200,200));
         resultBox.setOutlineThickness(2);
-        resultBox.setPosition(240.f, 520.f);
+        resultBox.setPosition(200.f, 520.f);
         //Input box Info
         input.setSize(Vector2f(400.f, 55.f));
         input.setFillColor(Color::White);
