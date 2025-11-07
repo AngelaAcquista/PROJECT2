@@ -39,7 +39,7 @@ class LocationPage {
 public:
     LocationPage();
     void loadData(); //loading the city/state
-    void Event(const Event& event, const RenderWindow& window);
+    void Event(const sf::Event& event, const RenderWindow& window);
     void draw(RenderWindow& window) const;
     string getLocation() const {
         return userIn;
