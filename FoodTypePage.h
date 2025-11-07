@@ -52,7 +52,8 @@ class FoodTypePage{
             string line;
             getline(file, line); // skip header
 
-            for(int row = 0; row < 10; row++){ // just a few rows for testing
+            //total # of datapoints: 112,000
+            for(int row = 0; row < 1600; row++){
                 
                 if(!getline(file, line)) break;
 
