@@ -5,10 +5,6 @@
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include <vector>
-
-#ifndef MAINPAGE_H
-#define MAINPAGE_H
 
 using namespace sf;
 using namespace std;
@@ -115,5 +111,3 @@ public:
 
     bool isFoodTypeClicked(Vector2f mousePos) const{ return buttons[1].getGlobalBounds().contains(mousePos); }
 };
-
-#endif //MAINPAGE_H
