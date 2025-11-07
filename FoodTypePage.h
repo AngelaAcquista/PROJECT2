@@ -22,7 +22,8 @@ class FoodTypePage{
     Font font;
     Text title, subtitle, maxheap, hashtable, searchTxt, extraTxt, searchResult;
     RectangleShape in, searchButton, resultBox;
-    Sprite icon;
+    Sprite icon, staticLayerSprite;
+    RenderTexture staticLayer;
     Texture iconTexture;
     string userIn;
     bool userIsTyping = false, showCursor = false;
@@ -191,6 +192,17 @@ class FoodTypePage{
                 icon.setScale(0.11f, 0.11f);
                 icon.setPosition(205.f, 240.f);
             }
+            staticLayer.create(1000, 1080);
+            staticLayer.clear(Color::Transparent); 
+            staticLayer.draw(title);
+            staticLayer.draw(subtitle);
+            staticLayer.draw(searchButton);
+            staticLayer.draw(extraTxt);
+            staticLayer.draw(icon);
+            staticLayer.draw(hashtable);
+            staticLayer.draw(maxheap);
+            staticLayer.display();
+            staticLayerSprite.setTexture(staticLayer.getTexture());
             //Loading restaurant data into Hash
             loadData();
         }
@@ -275,16 +287,10 @@ class FoodTypePage{
             }
         }
         void draw(RenderWindow& window)const{
-            
-            window.draw(title);
-            window.draw(subtitle);
+
+            window.draw(staticLayerSprite);
             window.draw(in);
-            window.draw(searchButton);
             window.draw(searchTxt);
-            window.draw(extraTxt);
-            window.draw(icon);
-            window.draw(hashtable);
-            window.draw(maxheap);
             //Cursor Info
             if(userIsTyping && const_cast<FoodTypePage*>(this)->cursorTimer.getElapsedTime().asSeconds() >= 0.5f){
                 
