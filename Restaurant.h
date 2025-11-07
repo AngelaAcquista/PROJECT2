@@ -4,11 +4,10 @@
 using namespace std;
 
 class Restaurant{
-    private:
-        string title;
-        string phone;
-        float rating;
-        string address;
+    string title;
+    string phone;
+    float rating;
+    string address;
 
     public:
 

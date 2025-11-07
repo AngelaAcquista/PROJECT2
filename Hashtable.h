@@ -8,49 +8,46 @@ using namespace std;
 
 //hashtable class structure was gotten from provided textbook: Data Structures and Algorithm Analysis in C++
 class Hashtable {
-    private:
-        //key: [category: City, State]
-        //value: a vector of restaurant objects: <restaurant name (title), phone, rating, address>
-        //each bucket will hash to key-value pairs
-        vector<list<pair<string, vector<Restaurant>>>> table;
-        int numEntries;
-        int numBuckets;
-        float loadFactor;
-        float maxLoadFactor = 0.75;
-        bool searchSuccess = false;
+    //key: [category: City, State]
+    //value: a vector of restaurant objects: <restaurant name (title), phone, rating, address>
+    //each bucket will hash to key-value pairs
+    vector<list<pair<string, vector<Restaurant>>>> table;
+    int numEntries;
+    int numBuckets;
+    float loadFactor;
+    float maxLoadFactor = 0.75;
+    bool searchSuccess = false;
 
-        void rehash() {
-            vector<list<pair<string, vector<Restaurant>>>> oldTable = table;
-            //add more slots to the hashtable
-            vector<list<pair<string, vector<Restaurant>>>> updatedTable;
-            updatedTable.resize(numBuckets * 2);
+    void rehash() {
+        vector<list<pair<string, vector<Restaurant>>>> oldTable = table;
+        //add more slots to the hashtable
+        vector<list<pair<string, vector<Restaurant>>>> updatedTable;
+        updatedTable.resize(numBuckets * 2);
 
-            table = updatedTable;
-            //recalculate table size and load factor
-            updateTableSize(numBuckets * 2);
-            updateLoadFactor();
+        table = updatedTable;
+        //recalculate table size and load factor
+        updateTableSize(numBuckets * 2);
+        updateLoadFactor();
 
-            //hash all existing keys in the old hashtable
-           for (auto &currList: oldTable) {
-               for (auto &pair: currList) {
-                   int newIndex = hash(pair.first);
-                   table[newIndex].push_back(pair);
-               }
-           }
-
-        }
-        int hash(const string& key) {
-            /*performs the hashing operation on the string and
-            *returns the associated index
-            */
-            int hashValue = 0;
-            for (int i = 0; i < key.length(); i++) {
-                hashValue = hashValue * 227 + key[i];
+        //hash all existing keys in the old hashtable
+        for (auto &currList: oldTable) {
+            for (auto &pair: currList) {
+                int newIndex = hash(pair.first);
+                table[newIndex].push_back(pair);
             }
-            return hashValue % table.size();
         }
 
-
+    }
+    int hash(const string& key) {
+        /*performs the hashing operation on the string and
+        *returns the associated index
+        */
+        int hashValue = 0;
+        for (int i = 0; i < key.length(); i++) {
+            hashValue = hashValue * 227 + key[i];
+        }
+        return hashValue % table.size();
+    }
     public:
         Hashtable() {
             //initialize the hashtable with default values
