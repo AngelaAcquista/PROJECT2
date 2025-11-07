@@ -21,12 +21,10 @@ using namespace sf;
 
 class FoodTypePage {
     Font font;
-    Text title, subtitle;
-    Text searchTxt, extraTxt;
+    Text title, subtitle, maxheap, hashtable, searchTxt, extraTxt, searchResult;
     RectangleShape in, searchButton, resultBox;
     Sprite icon;
     Texture iconTexture;
-    Text searchResult;
 
     //User typing info
     string userIn;
@@ -126,6 +124,20 @@ class FoodTypePage {
             subtitle.setCharacterSize(24);
             subtitle.setFillColor(Color(110,110,110));
             subtitle.setPosition(500.f - subtitle.getLocalBounds().width / 2.f, 310.f);
+
+            //Hashtable display time
+            hashtable.setFont(font);
+            hashtable.setString("Hashtable: ");
+            hashtable.setCharacterSize(20);
+            hashtable.setFillColor(Color(110,110,110));
+            hashtable.setPosition(50.f, 1025.f);
+
+            //MaxHeap display time
+            maxheap.setFont(font);
+            maxheap.setString("MaxHeap: ");
+            maxheap.setCharacterSize(20);
+            maxheap.setFillColor(Color(110,110,110));
+            maxheap.setPosition(800.f, 1025.f);
 
             //Results Info
             searchResult.setFont(font);
@@ -274,6 +286,8 @@ class FoodTypePage {
             window.draw(searchTxt);
             window.draw(extraTxt);
             window.draw(icon);
+            window.draw(hashtable);
+            window.draw(maxheap);
 
             //Cursor Info
             if (userIsTyping && const_cast<FoodTypePage*>(this)->cursorTimer.getElapsedTime().asSeconds() >= 0.5f) {
