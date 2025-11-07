@@ -44,6 +44,71 @@ class LocationPage {
 
 
 public:
+    void loadData(){
+        vector<vector<string>> restaurantData;
+
+        for (int i = 1; i <= 10; i++) {
+            string filePath = "../dataset/380K_US_Restaurants_" + to_string(i) + ".csv";
+            ifstream file(filePath);
+
+            if (!file.is_open()) {
+                cerr << "Error opening " << filePath << endl;
+                continue;
+            }
+
+            string line;
+            getline(file, line); // skip header
+
+            for (int row = 0; row < 10; row++) { // just a few for testing
+                if (!getline(file, line)) break;
+
+                istringstream stream(line);
+                vector<string> currRow;
+                string dataPoint;
+
+                for (int col = 0; col < 7; col++) {
+                    if (col == 6) {
+                        getline(stream, dataPoint, '[');
+                        if (dataPoint.size() > 4) dataPoint = dataPoint.substr(1, dataPoint.size() - 4);
+                        else  dataPoint = "";
+                    } else {
+                        getline(stream, dataPoint, ',');
+                    }
+                    currRow.push_back(dataPoint);
+                }
+                restaurantData.push_back(currRow);
+            }
+        }
+
+
+        //figure out how to fix this later
+        //  Insert into hashtable
+        for (auto &row : restaurantData) {
+            if (row.size() < 7) continue;
+
+            string title = row[0];
+            string city = row[1];
+            string state = row[4];
+            string key = city + ", " + state;
+
+            transform(key.begin(), key.end(), key.begin(), ::tolower);
+            while (!key.empty() && (key.back() == ',' || key.back() == ' ')) key.pop_back();
+
+            float rating = 0.0f;
+            try {
+                if (!row[3].empty()) rating = stof(row[3]);
+            } catch (...) { rating = 0.0f; }
+
+            string phone = row[5];
+            string address = row[6];
+        
+            Restaurant r(title, phone, rating, address);
+            locationTable.insert(key, r);
+        }
+
+        cout << "Location hashtable loaded successfully.\n";
+    } //loading the city/state
+
     LocationPage(){
         if (!font.loadFromFile("../assets/MomoTrustDisplay-Regular.ttf")) {
             cerr << "Error loading font" << endl;
@@ -133,71 +198,6 @@ public:
         //Load restaurant data
         loadData();
     }
-    void loadData(){
-        vector<vector<string>> restaurantData;
-
-        for (int i = 1; i <= 10; i++) {
-            string filePath = "../dataset/380K_US_Restaurants_" + to_string(i) + ".csv";
-            ifstream file(filePath);
-
-            if (!file.is_open()) {
-                cerr << "Error opening " << filePath << endl;
-                continue;
-            }
-
-            string line;
-            getline(file, line); // skip header
-
-            for (int row = 0; row < 10; row++) { // just a few for testing
-                if (!getline(file, line)) break;
-
-                istringstream stream(line);
-                vector<string> currRow;
-                string dataPoint;
-
-                for (int col = 0; col < 7; col++) {
-                    if (col == 6) {
-                        getline(stream, dataPoint, '[');
-                        if (dataPoint.size() > 4) dataPoint = dataPoint.substr(1, dataPoint.size() - 4);
-                        else  dataPoint = "";
-                    } else {
-                        getline(stream, dataPoint, ',');
-                    }
-                    currRow.push_back(dataPoint);
-                }
-                restaurantData.push_back(currRow);
-            }
-        }
-
-
-        //figure out how to fix this later
-        //  Insert into hashtable
-        for (auto &row : restaurantData) {
-            if (row.size() < 7) continue;
-
-            string title = row[0];
-            string city = row[1];
-            string state = row[4];
-            string key = city + ", " + state;
-
-            transform(key.begin(), key.end(), key.begin(), ::tolower);
-            while (!key.empty() && (key.back() == ',' || key.back() == ' ')) key.pop_back();
-
-            float rating = 0.0f;
-            try {
-                if (!row[3].empty()) rating = stof(row[3]);
-            } catch (...) { rating = 0.0f; }
-
-            string phone = row[5];
-            string address = row[6];
-        
-            Restaurant r(title, phone, rating, address);
-            locationTable.insert(key, r);
-        }
-
-        cout << "Location hashtable loaded successfully.\n";
-    } //loading the city/state
-
     void Event(const sf::Event& event, const RenderWindow& window){
         if (event.type == Event::MouseButtonPressed) {
             auto mouse = Mouse::getPosition(window);
