@@ -41,7 +41,7 @@ class FoodTypePage {
     void loadData(){
         vector<vector<string>> restaurantData;
 
-        for (int i = 1; i <= 15; i++) {
+        for (int i = 1; i <= 10; i++) {
             string filePath = "../dataset/380K_US_Restaurants_" + to_string(i) + ".csv";
             ifstream file(filePath);
 
