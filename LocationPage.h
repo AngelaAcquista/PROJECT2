@@ -34,7 +34,7 @@ public:
     void loadData(){
         
         vector<vector<string>> restaurantData;
-        Readandextract(restaurantData);
+        FileReader(restaurantData);
 
         //  Insert into hashtable
         for(auto &row : restaurantData){
