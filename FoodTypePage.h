@@ -102,7 +102,7 @@ class FoodTypePage{
             maxheap.setString("MaxHeap: ");
             maxheap.setCharacterSize(20);
             maxheap.setFillColor(Color(110,110,110));
-            maxheap.setPosition(800.f, 1025.f);
+            maxheap.setPosition(600.f, 1025.f);
             //Results Info
             searchResult.setFont(font);
             searchResult.setCharacterSize(22);
@@ -160,8 +160,6 @@ class FoodTypePage{
             staticLayer.draw(searchButton);
             staticLayer.draw(extraTxt);
             staticLayer.draw(icon);
-            staticLayer.draw(hashtable);
-            staticLayer.draw(maxheap);
             staticLayer.display();
             staticLayerSprite.setTexture(staticLayer.getTexture());
             //Loading restaurant data into Hash
@@ -232,10 +230,9 @@ class FoodTypePage{
                             }
                         }
 
-
+                        //timer logic gotten from stack overflow: https://stackoverflow.com/questions/22387586/measuring-execution-time-of-a-function-in-c
                         auto hashTableEnd = high_resolution_clock::now();
                         duration<double, std::milli> hashTableTime = hashTableEnd - hashTableStart;
-                        cout << "Hashtable time: " << hashTableTime.count() << " ms" << endl;
                         
                         MaxHeap heap;
                         
@@ -245,7 +242,9 @@ class FoodTypePage{
                         const Restaurant top = heap.peekmax();
                         auto maxHeapEnd = high_resolution_clock::now();
                         duration<double, std::milli> maxHeapTime = maxHeapEnd - maxHeapStart;
-                        cout << "MaxHeap time: " << maxHeapTime.count() << " ms" << endl;
+
+                        hashtable.setString("Hashtable: " + to_string(hashTableTime.count()) + " ms");
+                        maxheap.setString("Max-heap: " + to_string(maxHeapTime.count()) + " ms");
 
                         //Rating Info
                         ostringstream rating;
@@ -281,5 +280,7 @@ class FoodTypePage{
                 window.draw(resultBox);
                 window.draw(searchResult);
             }
+            window.draw(hashtable);
+            window.draw(maxheap);
         }
 };

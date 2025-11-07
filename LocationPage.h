@@ -106,10 +106,10 @@ public:
         hashtable.setPosition(50.f, 1025.f);
         //MaxHeap display time
         maxheap.setFont(font);
-        maxheap.setString("MaxHeap: ");
+        maxheap.setString("Max-Heap: ");
         maxheap.setCharacterSize(20);
         maxheap.setFillColor(Color(110,110,110));
-        maxheap.setPosition(800.f, 1025.f);
+        maxheap.setPosition(600.f, 1025.f);
         //Results Info
         searchResult.setFont(font);
         searchResult.setCharacterSize(22);
@@ -167,8 +167,6 @@ public:
         staticLayer.draw(title);
         staticLayer.draw(subtitle);
         staticLayer.draw(inputFormat);
-        staticLayer.draw(hashtable);
-        staticLayer.draw(maxheap);
         staticLayer.draw(searchButton);
         staticLayer.draw(extraTxt);
         staticLayer.draw(icon);
@@ -242,6 +240,7 @@ public:
                     searchResult.setString("No restaurants found in " + userIn);
                     
                 }else{
+                    //timer logic gotten from stack overflow: https://stackoverflow.com/questions/22387586/measuring-execution-time-of-a-function-in-c
                     auto hashTableStart = high_resolution_clock::now();
                     Restaurant hashtableTop = results[0];
                     for (const auto& r: results) {
@@ -252,7 +251,7 @@ public:
 
                     auto hashTableEnd = high_resolution_clock::now();
                     duration<double, std::milli> hashTableTime = hashTableEnd - hashTableStart;
-                    cout << "Hashtable time: " << hashTableTime.count() << " ms" << endl;
+
 
                     MaxHeap heap;
 
@@ -262,8 +261,9 @@ public:
                     const Restaurant top = heap.peekmax();
                     auto maxHeapEnd = high_resolution_clock::now();
                     duration<double, std::milli> maxHeapTime = maxHeapEnd - maxHeapStart;
-                    cout << "MaxHeap time: " << maxHeapTime.count() << " ms" << endl;
-                    
+
+                    hashtable.setString("Hashtable: " + to_string(hashTableTime.count()) + " ms");
+                    maxheap.setString("Max-heap: " + to_string(maxHeapTime.count()) + " ms");
 
                     // Rating Info
                     ostringstream rating;
@@ -300,6 +300,8 @@ public:
             window.draw(resultBox);
             window.draw(searchResult);
         }
+        window.draw(hashtable);
+        window.draw(maxheap);
     }
     string getLocation()const{ return userIn; }
 };
