@@ -1,8 +1,6 @@
 //
 // Created by evava on 11/3/2025.
 //
-#ifndef RESTAURANTFINDER_FOODTYPEPAGE_H
-#define RESTAURANTFINDER_FOODTYPEPAGE_H
 #pragma once
 #include "Hashtable.h"
 #include <SFML/Graphics.hpp>
@@ -306,5 +304,3 @@ class FoodTypePage{
             }
         }
 };
-
-#endif //RESTAURANTFINDER_FOODTYPEPAGE_H
