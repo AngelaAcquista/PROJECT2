@@ -1,6 +1,3 @@
-//
-// Created by evava on 10/30/2025.
-//
 #pragma once
 
 #include <SFML/Graphics.hpp>
@@ -12,11 +9,12 @@ using namespace std;
 class MainPage{
 
     Font font;
+    RenderTexture staticLayer;
     Text title, message, subText, subtitle, buttonText[3];
     RectangleShape line, buttons[3];
     //Icon textures
     Texture iconTexture[3];
-    Sprite icon[3];
+    Sprite icon[3], staticLayerSprite;
 
 public:
 
@@ -55,11 +53,8 @@ public:
         subText.setOrigin(subBounds.width / 2.f, 0);
         subText.setPosition(centerX, groupOffsetY + messageBounds.height + 18.f);
         // --- Buttons ---
-        string options[3] = {"Location", "Food Type"};
-        string icons[3] = {"../assets/pin.png", "../assets/balanced-diet.png",};
-        float startY = groupOffsetY + 140.f;
-        float buttonWidth = 320.f;
-        float buttonHeight = 75.f;
+        string options[3] = {"Location", "Food Type"}, icons[3] = {"../assets/pin.png", "../assets/balanced-diet.png",};
+        float startY = groupOffsetY + 140.f, buttonWidth = 320.f, buttonHeight = 75.f;
 
         for(int i = 0; i < 2; i++){
             // Button rectangle
@@ -83,21 +78,23 @@ public:
             buttonText[i].setFillColor(Color(40, 40, 40));
             buttonText[i].setPosition(buttonX + 110.f, buttonY + 22.f);
         }
-    }
-    void draw(RenderWindow& window)const{
-        
-        window.draw(title);
-        window.draw(line);
-        window.draw(message);
-        window.draw(subText);
+        staticLayer.create(1000.f, 1100.f);
+        staticLayer.clear(Color::Transparent);
+        staticLayer.draw(title);
+        staticLayer.draw(line);
+        staticLayer.draw(message);
+        staticLayer.draw(subText);
 
-        for(int i = 0; i < 3; i++){
-            
-            window.draw(buttons[i]);
-            window.draw(icon[i]);
-            window.draw(buttonText[i]);
+        for(int i = 0; i < 2; i++){
+
+            staticLayer.draw(buttons[i]);
+            staticLayer.draw(icon[i]);
+            staticLayer.draw(buttonText[i]);
         }
+        staticLayer.display();
+        staticLayerSprite.setTexture(staticLayer.getTexture());
     }
+    void draw(RenderWindow& window)const{ window.draw(staticLayerSprite); }
     bool isLocationClicked(Vector2f mousePos)const{ return buttons[0].getGlobalBounds().contains(mousePos); }
 
     bool isFoodTypeClicked(Vector2f mousePos) const{ return buttons[1].getGlobalBounds().contains(mousePos); }

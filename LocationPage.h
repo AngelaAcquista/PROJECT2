@@ -1,6 +1,3 @@
-//
-// Created by evava on 10/31/2025.
-//
 #pragma once
 
 #include <SFML/Graphics.hpp>
@@ -202,7 +199,7 @@ public:
             icon.setScale(0.09f, 0.09f);
             icon.setPosition(205.f, 240.f);
         }
-        staticLayer.create(1000, 1080);
+        staticLayer.create(1000.f, 1100.f);
         staticLayer.clear(Color::Transparent);
         staticLayer.draw(title);
         staticLayer.draw(subtitle);

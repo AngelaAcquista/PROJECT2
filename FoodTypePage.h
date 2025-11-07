@@ -1,6 +1,3 @@
-//
-// Created by evava on 11/3/2025.
-//
 #pragma once
 #include "Hashtable.h"
 #include <SFML/Graphics.hpp>
@@ -192,7 +189,7 @@ class FoodTypePage{
                 icon.setScale(0.11f, 0.11f);
                 icon.setPosition(205.f, 240.f);
             }
-            staticLayer.create(1000, 1080);
+            staticLayer.create(1000.f, 1100.f);
             staticLayer.clear(Color::Transparent); 
             staticLayer.draw(title);
             staticLayer.draw(subtitle);
