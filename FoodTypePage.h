@@ -78,8 +78,7 @@ class FoodTypePage{
             
             if(row.size() < 7) continue;
 
-            string title = row[0];
-            string category = row[2];
+            string title = row[0], category = row[2];
 
             transform(category.begin(), category.end(), category.begin(), ::tolower);
             size_t findComma = category.find(',');
@@ -104,8 +103,7 @@ class FoodTypePage{
                 
                 rating = 0.0f; 
             }
-            string phone = row[5];
-            string address = row[6];
+            string phone = row[5], address = row[6];
 
             Restaurant r(title, phone, rating, address);
             string key = category; // Key = food type
