@@ -138,7 +138,7 @@ void LocationPage::loadData() {
         std::string title = row[0];
         std::string city = row[1];
         std::string state = row[4];
-        std::string key = city + " " + state;
+        std::string key = city + ", " + state;
 
         std::transform(key.begin(), key.end(), key.begin(), ::tolower);
         while (!key.empty() && (key.back() == ',' || key.back() == ' '))
