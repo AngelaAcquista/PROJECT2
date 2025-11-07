@@ -18,7 +18,7 @@ void loadingRestaurant(){
     //read and extract data from 10 files
     //reference for reading a csv file:
     //https://medium.com/@ryan_forrester_/reading-csv-files-in-c-how-to-guide-35030eb378ad
-    Readandextract(restaurantData);
+    FileReader(restaurantData);
     //declare hashmap
     Hashtable hashmap;
 
