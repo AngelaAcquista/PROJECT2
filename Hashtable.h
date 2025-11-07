@@ -134,6 +134,7 @@ class Hashtable {
                     return pair.second;
                 }
             }
+            return {};
         }
 
 
