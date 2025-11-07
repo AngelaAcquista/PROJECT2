@@ -16,7 +16,7 @@ using namespace std;
 using namespace sf;
 
 class FoodTypePage{
-
+    
     Font font;
     Text title, subtitle, maxheap, hashtable, searchTxt, extraTxt, searchResult;
     RectangleShape in, searchButton, resultBox;
@@ -30,9 +30,9 @@ class FoodTypePage{
     Hashtable restaurantTable;
 
     void loadData(){
-        
+        FileReader filereader;
         vector<vector<string>> restaurantData;
-        ReadFile(restaurantData);
+        filereader.ReadFile(restaurantData);
         // Insert into hashtable
         for(auto &row : restaurantData){
             
