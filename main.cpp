@@ -11,6 +11,7 @@
 #include <string>
 
 using namespace std;
+using namespace sf;
 
 void loadingRestaurant() {
     //declare a 2D vector to organize data for each restaurant
@@ -78,7 +79,7 @@ void loadingRestaurant() {
 
 int main() {
     loadingRestaurant(); //run this logic first
-    sf::RenderWindow window(sf::VideoMode(1000, 1100), "Restaurant Finder", sf::Style::Titlebar | sf::Style::Close);
+    RenderWindow window(VideoMode(1000, 1100), "Restaurant Finder", Style::Titlebar | Style::Close);
     window.setFramerateLimit(60);
 
     //Different windows
@@ -87,25 +88,25 @@ int main() {
     FoodTypePage foodTypePage;
 
     //Controller
-    std::string currPage = "Main";
+    string currPage = "Main";
 
     while (window.isOpen()) {
-        sf::Event event{};
+        Event event{};
         while (window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed)
+            if (event.type == Event::Closed)
                 window.close();
 
             //Main Info
             if (currPage == "Main") {
-                if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
-                    sf::Vector2f mousePos(static_cast<float>(event.mouseButton.x), static_cast<float>(event.mouseButton.y));
+                if (event.type == Event::MouseButtonPressed && event.mouseButton.button == Mouse::Left) {
+                    Vector2f mousePos(static_cast<float>(event.mouseButton.x), static_cast<float>(event.mouseButton.y));
 
                     if (mainPage.isLocationClicked(mousePos)) {
-                        std::cout << "[MainPage] Location button clicked.\n";
+                        cout << "[MainPage] Location button clicked.\n";
                         currPage = "Location";
                     }
                     else if (mainPage.isFoodTypeClicked(mousePos)) {
-                        std::cout << "[MainPage] Food Type button clicked.\n";
+                        cout << "[MainPage] Food Type button clicked.\n";
                         currPage = "Food";
                     }
                 }
@@ -115,8 +116,8 @@ int main() {
             else if (currPage == "Location") {
                 locationPage.Event(event, window);
 
-                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-                    std::cout << "[LocationPage] Returning to Main.\n";
+                if (Keyboard::isKeyPressed(Keyboard::Escape)) {
+                    cout << "[LocationPage] Returning to Main.\n";
                     currPage = "Main";
                 }
             }
@@ -125,15 +126,15 @@ int main() {
             else if (currPage == "Food") {
                 foodTypePage.Event(event, window);
 
-                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-                    std::cout << "[FoodTypePage] Returning to Main.\n";
+                if (Keyboard::isKeyPressed(Keyboard::Escape)) {
+                    cout << "[FoodTypePage] Returning to Main.\n";
                     currPage = "Main";
                 }
             }
         }
 
         //Drawing
-        window.clear(sf::Color(250, 243, 232)); // soft beige
+        window.clear(Color(250, 243, 232)); // soft beige
 
         if (currPage == "Main")
             mainPage.draw(window);
