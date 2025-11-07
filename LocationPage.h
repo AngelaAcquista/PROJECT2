@@ -1,32 +1,34 @@
 //
 // Created by evava on 10/31/2025.
 //
-
 #ifndef LOCATIONPAGE_H
 #define LOCATIONPAGE_H
-
 #pragma once
+
 #include <SFML/Graphics.hpp>
 #include <string>
 #include "Hashtable.h"
 #include "Restaurant.h"
 
+using namespace sf;
+using namespace std;
+
 class LocationPage {
-    sf::Font font;
-    sf::Text title, subtitle, options;
-    sf::RectangleShape input, searchButton, resultBox;
-    sf::Text searchTxt, buttonTxt, extraTxt;
-    sf::Text searchResult;
-    sf::Texture iconTexture;
-    sf::Sprite icon;
+    Font font;
+    Text title, subtitle, options;
+    RectangleShape input, searchButton, resultBox;
+    Text searchTxt, buttonTxt, extraTxt;
+    Text searchResult;
+    Texture iconTexture;
+    Sprite icon;
 
     //Text Cursor info
-    sf::RectangleShape textCursor;
-    sf::Clock cursorTimer;
+    RectangleShape textCursor;
+    Clock cursorTimer;
     bool showCursor = false;
 
     //User info
-    std::string userIn;
+    string userIn;
     bool userIsTyping = false;
 
     //Including the hashtable
@@ -37,9 +39,9 @@ class LocationPage {
 public:
     LocationPage();
     void loadData(); //loading the city/state
-    void Event(const sf::Event& event, const sf::RenderWindow& window);
-    void draw(sf::RenderWindow& window) const;
-    std::string getLocation() const {
+    void Event(const Event& event, const RenderWindow& window);
+    void draw(RenderWindow& window) const;
+    string getLocation() const {
         return userIn;
     };
 };
