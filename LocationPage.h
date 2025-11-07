@@ -21,22 +21,14 @@ using namespace std;
 class LocationPage{
 
     Font font;
-    Text title, subtitle, inputFormat, options, maxheap, hashtable;
-    RectangleShape input, searchButton, resultBox;
-    Text searchTxt, buttonTxt, extraTxt;
-    Text searchResult;
+    Text title, subtitle, inputFormat, options, maxheap, hashtable, searchTxt, buttonTxt, extraTxt, searchResult;
+    RectangleShape input, searchButton, resultBox, textCursor;
     Texture iconTexture;
     Sprite icon;
-    //Text Cursor info
-    RectangleShape textCursor;
     Clock cursorTimer;
-    bool showCursor = false;
-    //User info
+    bool showCursor = false, userIsTyping = false, showResult = false;
     string userIn;
-    bool userIsTyping = false;
-    //Including the hashtable
     Hashtable locationTable;
-    bool showResult = false;
 
 public:
 
