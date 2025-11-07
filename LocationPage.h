@@ -22,7 +22,7 @@ using namespace std;
 
 class LocationPage {
     Font font;
-    Text title, subtitle, inputFormat, options;
+    Text title, subtitle, inputFormat, options, maxheap, hashtable;
     RectangleShape input, searchButton, resultBox;
     Text searchTxt, buttonTxt, extraTxt;
     Text searchResult;
@@ -60,7 +60,7 @@ public:
             getline(file, line); // skip header
 
 
-            for (int row = 0; row < 10; row++) { // just a few for testing: will change later
+            for (int row = 0; row < 10; row++) {
                 if (!getline(file, line)) break;
 
                 istringstream stream(line);
@@ -82,7 +82,6 @@ public:
         }
 
 
-        //figure out how to fix this later
         //  Insert into hashtable
         for (auto &row : restaurantData) {
             if (row.size() < 7) continue;
@@ -149,6 +148,19 @@ public:
         inputFormat.setFillColor(Color(110,110,110));
         inputFormat.setPosition(500.f - inputFormat.getLocalBounds().width / 2.f, inputFormat.getLocalBounds().height + 330.f);
 
+        //Hashtable display time
+        hashtable.setFont(font);
+        hashtable.setString("Hashtable: ");
+        hashtable.setCharacterSize(20);
+        hashtable.setFillColor(Color(110,110,110));
+        hashtable.setPosition(50.f, 1025.f);
+
+        //MaxHeap display time
+        maxheap.setFont(font);
+        maxheap.setString("MaxHeap: ");
+        maxheap.setCharacterSize(20);
+        maxheap.setFillColor(Color(110,110,110));
+        maxheap.setPosition(800.f, 1025.f);
 
         //Results Info
         searchResult.setFont(font);
@@ -312,6 +324,8 @@ public:
     void draw(RenderWindow& window) const{
         window.draw(title);
         window.draw(subtitle);
+        window.draw(hashtable);
+        window.draw(maxheap);
         window.draw(inputFormat);
         window.draw(input);
         window.draw(searchButton);
