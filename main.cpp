@@ -13,12 +13,13 @@ using namespace std;
 using namespace sf;
 
 void loadingRestaurant(){
+    FileReader filereader;
     //declare a 2D vector to organize data for each restaurant
     vector<vector<string>> restaurantData;
     //read and extract data from 10 files
     //reference for reading a csv file:
     //https://medium.com/@ryan_forrester_/reading-csv-files-in-c-how-to-guide-35030eb378ad
-    ReadFile(restaurantData);
+    filereader.ReadFile(restaurantData);
     //declare hashmap
     Hashtable hashmap;
 
