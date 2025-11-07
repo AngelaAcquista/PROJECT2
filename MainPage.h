@@ -12,14 +12,8 @@ using namespace std;
 class MainPage{
 
     Font font;
-    Text title;
-    Text message;
-    Text subText;
-    RectangleShape line;
-    Text subtitle;
-    //Buttons:
-    RectangleShape buttons[3];
-    Text buttonText[3];
+    Text title, message, subText, subtitle, buttonText[3];
+    RectangleShape line, buttons[3];
     //Icon textures
     Texture iconTexture[3];
     Sprite icon[3];
@@ -28,9 +22,7 @@ public:
 
     MainPage(){
         
-        const float windowWidth = 1000.f;
-        const float windowHeight = 1100.f;
-        const float centerX = windowWidth / 2.f;
+        const float windowWidth = 1000.f, windowHeight = 1100.f, centerX = windowWidth / 2.f;
         // Load font
         if(!font.loadFromFile("../assets/MomoTrustDisplay-Regular.ttf")) cerr << "Error loading font" << endl;
         // --- Header (top-left corner) ---
