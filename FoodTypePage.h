@@ -32,7 +32,7 @@ class FoodTypePage{
     void loadData(){
         
         vector<vector<string>> restaurantData;
-        FileReader(restaurantData);
+        ReadFile(restaurantData);
         // Insert into hashtable
         for(auto &row : restaurantData){
             
