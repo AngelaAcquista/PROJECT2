@@ -4,10 +4,9 @@
 #include "FoodTypePage.h"
 #include "Hashtable.h"
 #include "MaxHeap.h"
+#include "FileReader.h"
 #include "Restaurant.h"
 #include <iostream>
-#include <fstream>
-#include <sstream>
 #include <string>
 
 using namespace std;
@@ -19,43 +18,7 @@ void loadingRestaurant(){
     //read and extract data from 10 files
     //reference for reading a csv file:
     //https://medium.com/@ryan_forrester_/reading-csv-files-in-c-how-to-guide-35030eb378ad
-    for(int i = 1; i <= 10; i++){
-        
-        string filePath = "../dataset/380K_US_Restaurants_";
-        filePath += to_string(i) + ".csv";
-        ifstream file(filePath);
-        //add error handling if a file cannot be opened
-        if(!file.is_open()) cerr << "Error opening " << filePath << endl;
-        //to avoid reading the header row
-        string line;
-        getline(file, line);
-        //total # of datapoints: 112,000
-        //for each iteration, extract the necessary data for each restaurant
-        for(int row = 0; row < 1600; row++){
-            
-            string dataPoint;
-            getline(file, line);
-            istringstream stream(line);
-            vector<string> currRow;
-            //for each row, read and extract the data from the first 7 columns
-            for(int col = 0; col < 7; col++){
-                
-                if(col == 6){
-                    
-                    getline(stream, dataPoint, '[');
-                    if (dataPoint.size() > 4) dataPoint = dataPoint.substr(1, dataPoint.size() - 4);
-                    else dataPoint = "";
-                    currRow.push_back(dataPoint);
-                    
-                }else{
-                    
-                    getline(stream, dataPoint, ',');
-                    currRow.push_back(dataPoint);
-                }
-            }
-            restaurantData.push_back(currRow);
-        }
-    }
+    Readandextract(restaurantData);
     //declare hashmap
     Hashtable hashmap;
 
