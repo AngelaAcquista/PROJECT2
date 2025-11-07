@@ -15,7 +15,7 @@ using namespace std;
 
 class LocationPage {
     Font font;
-    Text title, subtitle, options;
+    Text title, subtitle, inputFormat, options;
     RectangleShape input, searchButton, resultBox;
     Text searchTxt, buttonTxt, extraTxt;
     Text searchResult;

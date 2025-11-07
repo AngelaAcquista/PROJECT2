@@ -30,6 +30,14 @@ LocationPage::LocationPage() {
     subtitle.setFillColor(Color(110,110,110));
     subtitle.setPosition(500.f - subtitle.getLocalBounds().width / 2.f, 310.f);
 
+    //input format
+    inputFormat.setFont(font);
+    inputFormat.setString("Example: Gainesville, FL");
+    inputFormat.setCharacterSize(20);
+    inputFormat.setFillColor(Color(110,110,110));
+    inputFormat.setPosition(500.f - inputFormat.getLocalBounds().width / 2.f, inputFormat.getLocalBounds().height + 330.f);
+
+
     //Results Info
     searchResult.setFont(font);
     searchResult.setCharacterSize(22);
@@ -97,7 +105,7 @@ LocationPage::LocationPage() {
 void LocationPage::loadData() {
     vector<vector<string>> restaurantData;
 
-    for (int i = 1; i <= 15; i++) {
+    for (int i = 1; i <= 10; i++) {
         string filePath = "../dataset/380K_US_Restaurants_" + to_string(i) + ".csv";
         ifstream file(filePath);
 
@@ -132,6 +140,8 @@ void LocationPage::loadData() {
         }
     }
 
+
+    //figure out how to fix this later
     // 🔹 Insert into hashtable
     for (auto &row : restaurantData) {
         if (row.size() < 7) continue;
@@ -268,6 +278,7 @@ void LocationPage::Event(const sf::Event& event, const RenderWindow& window) {
 void LocationPage::draw(RenderWindow& window) const {
     window.draw(title);
     window.draw(subtitle);
+    window.draw(inputFormat);
     window.draw(input);
     window.draw(searchButton);
     window.draw(searchTxt);
