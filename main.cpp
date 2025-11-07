@@ -35,12 +35,12 @@ int main(){
 
                     if(mainPage.isLocationClicked(mousePos)){
                         
-                        cout << "[MainPage] Location button clicked.\n";
+                        //cout << "[MainPage] Location button clicked."<<endl;
                         currPage = "Location";
                         
                     }else if(mainPage.isFoodTypeClicked(mousePos)){
                         
-                        cout << "[MainPage] Food Type button clicked.\n";
+                        //cout << "[MainPage] Food Type button clicked."<<endl;
                         currPage = "Food";
                     }
                 }
@@ -53,7 +53,7 @@ int main(){
 
                 if(Keyboard::isKeyPressed(Keyboard::Escape)){
                     
-                    cout << "[LocationPage] Returning to Main.\n";
+                    //cout << "[LocationPage] Returning to Main."<<endl;
                     currPage = "Main";
                 }
             }
@@ -64,7 +64,7 @@ int main(){
 
                 if(Keyboard::isKeyPressed(Keyboard::Escape)){
                     
-                    cout << "[FoodTypePage] Returning to Main.\n";
+                    //cout << "[FoodTypePage] Returning to Main."<<endl;
                     currPage = "Main";
                 }
             }

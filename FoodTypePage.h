@@ -70,7 +70,7 @@ class FoodTypePage{
             restaurantTable.insert(key, r);
         }
 
-        cout << "Hashtable loaded successfully.\n";
+        //cout << "Hashtable loaded successfully."<<endl;
     }
     public:
 
@@ -182,7 +182,7 @@ class FoodTypePage{
                     userIsTyping = false;
                     showCursor = false;
                 }
-                if(searchButton.getGlobalBounds().contains(mouse.x, mouse.y)) cout << "Searching for food type: " << userIn << endl;
+                //if(searchButton.getGlobalBounds().contains(mouse.x, mouse.y)) cout << "Searching for food type: " << userIn << endl;
             }
             //Typing Logic
             if(userIsTyping && event.type == Event::TextEntered){
@@ -203,11 +203,11 @@ class FoodTypePage{
             }
             if(event.type == Event::KeyPressed && event.key.code == Keyboard::Enter){
 
-                if(event.type == Event::KeyPressed) cout << "Key pressed: " << event.key.code << endl;
+                //if(event.type == Event::KeyPressed) cout << "Key pressed: " << event.key.code << endl;
 
                 if(!userIn.empty()){
                     
-                    cout << "Searching for food type: " << userIn << endl;
+                    //cout << "Searching for food type: " << userIn << endl;
                     string input = userIn;
                     transform(input.begin(), input.end(), input.begin(), ::tolower);
                     size_t inSpace = input.find(' ');
@@ -218,7 +218,7 @@ class FoodTypePage{
 
                     if (results.empty()){
                         
-                        cout << "No restaurants found for " << userIn << endl;
+                        //cout << "No restaurants found for " << userIn << endl;
                         searchResult.setString("No restaurants found for " + userIn);
                         
                     }else{

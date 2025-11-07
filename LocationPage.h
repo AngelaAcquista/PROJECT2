@@ -57,9 +57,9 @@ public:
                     }
                 }
             }
-            cout << key << endl;
+            //cout << key << endl;
             key = key.substr(0, key.find(',') + 4);
-            cout << key << endl;
+            //cout << key << endl;
             float rating = 0.0f;
             
             try{
@@ -71,7 +71,7 @@ public:
             Restaurant r(title, phone, rating, address);
             locationTable.insert(key, r);
         }
-        cout << "Location hashtable loaded successfully.\n";
+        //cout << "Location hashtable loaded successfully."<<endl;
     } //loading the city/state
 
     LocationPage(){
@@ -191,7 +191,7 @@ public:
                 userIsTyping = false;
                 showCursor = false;
             }
-            if(searchButton.getGlobalBounds().contains(mouse.x, mouse.y)) cout << "Searching for location: " << userIn << endl;
+            //if(searchButton.getGlobalBounds().contains(mouse.x, mouse.y)) cout << "Searching for location: " << userIn << endl;
         }
         //Typing Logic
         if(userIsTyping && event.type == Event::TextEntered){
@@ -210,7 +210,7 @@ public:
             
             if(!userIn.empty()){
                 
-                cout << "Searching for location: " << userIn << endl;
+                //cout << "Searching for location: " << userIn << endl;
                 string input = userIn;
                 //  First, try exact match
                 vector<Restaurant> results = locationTable.search(input);
@@ -235,7 +235,7 @@ public:
                 //Display results
                 if(results.empty()){
                     
-                    cout << "No restaurants found in " << userIn << endl;
+                    //cout << "No restaurants found in " << userIn << endl;
                     searchResult.setString("No restaurants found in " + userIn);
                     
                 }else{
