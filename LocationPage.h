@@ -108,13 +108,6 @@ public:
             key = key.substr(0, key.find(',') + 4);
             cout << key << endl;
 
-            // string city = row[1];
-            // string state = row[4];
-            // string key = city + ", " + state;
-
-            // transform(key.begin(), key.end(), key.begin(), ::tolower);
-            // while (!key.empty() && (key.back() == ',' || key.back() == ' ')) key.pop_back();
-
             float rating = 0.0f;
             try {
                 if (!row[3].empty()) rating = stof(row[3]);
