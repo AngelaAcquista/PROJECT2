@@ -4,6 +4,7 @@
 #include <string>
 #include "MaxHeap.h"
 #include "Restaurant.h"
+#include "FileReader.h"
 #include <fstream>
 #include <sstream>
 #include <vector>
