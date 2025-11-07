@@ -24,7 +24,8 @@ class LocationPage{
     Text title, subtitle, inputFormat, options, maxheap, hashtable, searchTxt, buttonTxt, extraTxt, searchResult;
     RectangleShape input, searchButton, resultBox, textCursor;
     Texture iconTexture;
-    Sprite icon;
+    RenderTexture staticLayer;
+    Sprite icon, staticLayerSprite;
     Clock cursorTimer;
     bool showCursor = false, userIsTyping = false, showResult = false;
     string userIn;
@@ -201,6 +202,18 @@ public:
             icon.setScale(0.09f, 0.09f);
             icon.setPosition(205.f, 240.f);
         }
+        staticLayer.create(1000, 1080);
+        staticLayer.clear(Color::Transparent);
+        staticLayer.draw(title);
+        staticLayer.draw(subtitle);
+        staticLayer.draw(inputFormat);
+        staticLayer.draw(hashtable);
+        staticLayer.draw(maxheap);
+        staticLayer.draw(searchButton);
+        staticLayer.draw(extraTxt);
+        staticLayer.draw(icon);
+        staticLayer.display();
+        staticLayerSprite.setTexture(staticLayer.getTexture());
         //Load restaurant data
         loadData();
     }
@@ -294,16 +307,9 @@ public:
     }
     void draw(RenderWindow& window)const{
         
-        window.draw(title);
-        window.draw(subtitle);
-        window.draw(hashtable);
-        window.draw(maxheap);
-        window.draw(inputFormat);
+        window.draw(staticLayerSprite);
         window.draw(input);
-        window.draw(searchButton);
         window.draw(searchTxt);
-        window.draw(extraTxt);
-        window.draw(icon);
         //Cursor Info
         if(userIsTyping && const_cast<LocationPage*>(this)->cursorTimer.getElapsedTime().asSeconds() >= 0.5f){
             
