@@ -32,9 +32,9 @@ class LocationPage{
 public:
 
     void loadData(){
-        
+        FileReader filereader;
         vector<vector<string>> restaurantData;
-        ReadFile(restaurantData);
+        filereader.ReadFile(restaurantData);
 
         //  Insert into hashtable
         for(auto &row : restaurantData){
