@@ -1,8 +1,6 @@
 //
 // Created by evava on 10/31/2025.
 //
-#ifndef LOCATIONPAGE_H
-#define LOCATIONPAGE_H
 #pragma once
 
 #include <SFML/Graphics.hpp>
@@ -334,4 +332,3 @@ public:
     }
     string getLocation()const{ return userIn; }
 };
-#endif //LOCATIONPAGE_H
