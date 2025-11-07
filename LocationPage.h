@@ -83,11 +83,7 @@ public:
             
             if(row.size() < 7) continue;
 
-            string title = row[0];
-            string category = row[2];
-            string phone = row[5];
-            string address = row[6];
-            string key = "";
+            string title = row[0], category = row[2], phone = row[5], address = row[6], key = "";
             int commaCount = 0;
             
             for(int i = 0; i < address.length(); i++){
@@ -285,7 +281,7 @@ public:
                     // Address Formatting
                     string formatAdd = top.getAddress();
                     replace(formatAdd.begin(), formatAdd.end(), ',', '\n');
-                    const std::string dis = "Top-rated restaurant in " + userIn + ":\n\n" + "Name:\n " + top.getTitle() + "\n" + "Rating:\n " + rating.str() + " Stars\n"
+                    const string dis = "Top-rated restaurant in " + userIn + ":\n\n" + "Name:\n " + top.getTitle() + "\n" + "Rating:\n " + rating.str() + " Stars\n"
                     + "\nLocation:\n " + formatAdd + "\n\n" + "Phone #:\n " + top.getPhone();
                     searchResult.setString(dis);
                     // Adjusting text placement + box size (exact match to FoodTypePage)
