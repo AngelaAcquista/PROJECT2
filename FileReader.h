@@ -8,7 +8,7 @@ using namespace std;
 
 class FileReader{
 public:
-  void Readandextract(vector<vector<string>>& data){
+  void FileReader(vector<vector<string>>& data){
     
     for(int i = 1; i <= 10; i++){
             
