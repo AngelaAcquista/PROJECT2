@@ -20,7 +20,6 @@ add_executable(RestaurantFinder
         MainPage.h
         LocationPage.cpp
         LocationPage.h
-        FoodTypePage.cpp
         FoodTypePage.h
         # Add any other source files here later, e.g.:
         # restaurantWindow.cpp
