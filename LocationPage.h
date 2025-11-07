@@ -59,7 +59,8 @@ public:
             string line;
             getline(file, line); // skip header
 
-            for (int row = 0; row < 10; row++) { // just a few for testing
+
+            for (int row = 0; row < 10; row++) { // just a few for testing: will change later
                 if (!getline(file, line)) break;
 
                 istringstream stream(line);
@@ -87,27 +88,47 @@ public:
             if (row.size() < 7) continue;
 
             string title = row[0];
-            string city = row[1];
-            string state = row[4];
-            string key = city + ", " + state;
+            string category = row[2];
+            string phone = row[5];
+            string address = row[6];
 
-            transform(key.begin(), key.end(), key.begin(), ::tolower);
-            while (!key.empty() && (key.back() == ',' || key.back() == ' ')) key.pop_back();
+            string key = "";
+
+            int commaCount = 0;
+            for (int i = 0; i < address.length(); i++) {
+                if (address[i] == ',') {
+                    commaCount ++;
+                    if (commaCount == 2) {
+                        key = address.substr(i + 2);
+                        break;
+                    }
+                }
+            }
+            cout << key << endl;
+            key = key.substr(0, key.find(',') + 4);
+            cout << key << endl;
+
+            // string city = row[1];
+            // string state = row[4];
+            // string key = city + ", " + state;
+
+            // transform(key.begin(), key.end(), key.begin(), ::tolower);
+            // while (!key.empty() && (key.back() == ',' || key.back() == ' ')) key.pop_back();
 
             float rating = 0.0f;
             try {
                 if (!row[3].empty()) rating = stof(row[3]);
             } catch (...) { rating = 0.0f; }
 
-            string phone = row[5];
-            string address = row[6];
-        
+
             Restaurant r(title, phone, rating, address);
             locationTable.insert(key, r);
         }
 
         cout << "Location hashtable loaded successfully.\n";
     } //loading the city/state
+
+
 
     LocationPage(){
         if (!font.loadFromFile("../assets/MomoTrustDisplay-Regular.ttf")) {
@@ -237,7 +258,6 @@ public:
                 cout << "Searching for location: " << userIn << endl;
 
                 string input = userIn;
-                transform(input.begin(), input.end(), input.begin(), ::tolower);
 
                 //  First, try exact match
                 vector<Restaurant> results = locationTable.search(input);
