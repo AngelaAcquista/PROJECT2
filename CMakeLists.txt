@@ -21,9 +21,7 @@ add_executable(RestaurantFinder
         LocationPage.cpp
         LocationPage.h
         FoodTypePage.h
-        # Add any other source files here later, e.g.:
-        # restaurantWindow.cpp
-        # restaurantWindow.h
+        # Add any other source files here later
 )
 
 target_compile_features(RestaurantFinder PRIVATE cxx_std_20)
