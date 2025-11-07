@@ -24,13 +24,10 @@ class FoodTypePage{
     RectangleShape in, searchButton, resultBox;
     Sprite icon;
     Texture iconTexture;
-    //User typing info
     string userIn;
-    bool userIsTyping = false;
-    //Text Cursor
+    bool userIsTyping = false, showCursor = false;
     RectangleShape textCursor;
     Clock cursorTimer;
-    bool showCursor = false;
     Hashtable restaurantTable;
 
     void loadData(){
