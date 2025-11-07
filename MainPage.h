@@ -10,28 +10,28 @@
 #ifndef MAINPAGE_H
 #define MAINPAGE_H
 
-
+using namespace sf;
 
 class MainPage {
-    sf::Font font;
-    sf::Text title;
-    sf::Text message;
-    sf::Text subText;
-    sf::RectangleShape line;
-    sf::Text subtitle;
+    Font font;
+    Text title;
+    Text message;
+    Text subText;
+    RectangleShape line;
+    Text subtitle;
 
     //Buttons:
-    sf::RectangleShape buttons[3];
-    sf::Text buttonText[3];
+    RectangleShape buttons[3];
+    Text buttonText[3];
 
     //Icon textures
-    sf::Texture iconTexture[3];
-    sf::Sprite icon[3];
+    Texture iconTexture[3];
+    Sprite icon[3];
 public:
     MainPage();
-    void draw(sf::RenderWindow& window) const;
-    bool isLocationClicked(sf::Vector2f mousePos) const;
-    bool isFoodTypeClicked(sf::Vector2f mousePos) const;
+    void draw(RenderWindow& window) const;
+    bool isLocationClicked(Vector2f mousePos) const;
+    bool isFoodTypeClicked(Vector2f mousePos) const;
 
 };
 
