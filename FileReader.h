@@ -1,3 +1,11 @@
+#include <vector>
+#include <string>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+
+using namespace std;
+
 class filereader{
 public:
   void Readandextract(vector<vector<string>>& data){
