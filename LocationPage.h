@@ -7,8 +7,15 @@
 
 #include <SFML/Graphics.hpp>
 #include <string>
+#include "MaxHeap.h"
 #include "Hashtable.h"
 #include "Restaurant.h"
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <algorithm>
+#include <iomanip>
+#include <vector>
 
 using namespace sf;
 using namespace std;
