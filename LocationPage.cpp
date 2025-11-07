@@ -160,7 +160,7 @@ void LocationPage::loadData() {
     cout << "Location hashtable loaded successfully.\n";
 }
 
-void LocationPage::Event(const Event& event, const RenderWindow& window) {
+void LocationPage::Event(const sf::Event& event, const RenderWindow& window) {
     if (event.type == Event::MouseButtonPressed) {
         auto mouse = Mouse::getPosition(window);
 
