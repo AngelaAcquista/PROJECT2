@@ -46,7 +46,7 @@ public:
                 
                     currRow.push_back(dataPoint);
                  }
-                restaurantData.push_back(currRow);
+                data.push_back(currRow);
              }
         }
   }
