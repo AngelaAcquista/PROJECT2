@@ -20,8 +20,8 @@ using namespace std::chrono;
 class FoodTypePage{
     
     Font font;
-    Text title, subtitle, maxheap, hashtable, searchTxt, extraTxt, searchResult;
-    RectangleShape in, searchButton, resultBox;
+    Text title, subtitle, maxheap, hashtable, searchTxt, searchResult;
+    RectangleShape in, resultBox;
     Sprite icon, staticLayerSprite;
     RenderTexture staticLayer;
     Texture iconTexture;
@@ -130,21 +130,7 @@ class FoodTypePage{
             textCursor.setFillColor(Color(40,40,40));
             textCursor.setPosition(searchTxt.getPosition().x + 2.f, searchTxt.getPosition().y + 5.f);
             cursorTimer.restart();
-            //Search Button Info
-            searchButton.setSize(Vector2f(140.f, 55.f));
-            searchButton.setFillColor(Color(230,230,230));
-            searchButton.setOutlineColor(Color(180,180,180));
-            searchButton.setOutlineThickness(2);
-            searchButton.setPosition(690.f, 400.f);
             
-            extraTxt.setFont(font);
-            extraTxt.setString("Enter");
-            extraTxt.setCharacterSize(22);
-            extraTxt.setFillColor(Color(40, 40, 40));
-            // --- Center text inside the button dynamically ---
-            FloatRect txtBounds = extraTxt.getLocalBounds();
-            extraTxt.setOrigin(txtBounds.width / 2.f, txtBounds.height / 2.f + txtBounds.top);
-            extraTxt.setPosition( searchButton.getPosition().x + searchButton.getSize().x / 2.f, searchButton.getPosition().y + searchButton.getSize().y / 2.f - 4.f);
             //Icon Info
             if(iconTexture.loadFromFile("../assets/balanced-diet.png")){
                 
@@ -157,8 +143,6 @@ class FoodTypePage{
             staticLayer.clear(Color::Transparent); 
             staticLayer.draw(title);
             staticLayer.draw(subtitle);
-            staticLayer.draw(searchButton);
-            staticLayer.draw(extraTxt);
             staticLayer.draw(icon);
             staticLayer.display();
             staticLayerSprite.setTexture(staticLayer.getTexture());
@@ -182,7 +166,6 @@ class FoodTypePage{
                     userIsTyping = false;
                     showCursor = false;
                 }
-                //if(searchButton.getGlobalBounds().contains(mouse.x, mouse.y)) cout << "Searching for food type: " << userIn << endl;
             }
             //Typing Logic
             if(userIsTyping && event.type == Event::TextEntered){
