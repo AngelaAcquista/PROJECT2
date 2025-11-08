@@ -4,6 +4,7 @@
 ## Instructions for running the code
 1.) Click <> Code to download the repository link and clone it. Alternatively, you can click "Download Zip"
 and extract the zip file in a directory on your computer.
+
 2.) Open the project folder in your IDE and ensure that the dataset and assets folder are moved in the cmake-build-debug folder.
 
 3.) Press the play button and wait for the home screen to appear.
