@@ -15,5 +15,5 @@ and extract the zip file in a directory on your computer.
 - If you are searching by food type, enter the type of cuisine like (example: mexican).
 - Press enter to display the results.
   
- 5.) To go back to the home screen, press the escape key. If you want to exit out of the program, click the X on the
+ 5.) To go back to the home screen, press the esc key. If you want to exit out of the program, click the X on the
 top right corner
