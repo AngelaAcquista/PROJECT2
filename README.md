@@ -9,7 +9,7 @@ and extract the zip file in a directory on your computer.
 
 3.) Press the play button and wait for the home screen to appear.
 
-4.) Click on either the location button or Food Type to search for the top rated restaurant.
+4.) Click on either the location button or Food Type button to search for the top rated restaurant.
 
 - If you are searching by location, type the city and state in this format: City, ST (example: Gainesville, FL).
 - If you are searching by food type, enter the type of cuisine like (example: mexican).
